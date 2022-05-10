@@ -19,14 +19,7 @@ class MenuScreen(ScreenManager):
 
 class testAPP(MDApp):
     dialog = None
-    #myText1 = "Real MAdrid"
-    fh = open("C:\\PycharmProjects\\pythonProject\\P1_APP_ADaptation\\Classes_Test\\test.txt","r")
-    myText = fh.read().replace("\n", " ")
-    language = 'en'
-    output = gTTS(text=myText,lang=language,slow=False)
-
-    
-
+   
     def build(self):
         self.title='UI app'
         Window.size = (380, 600)
@@ -96,7 +89,7 @@ class testAPP(MDApp):
         self.dialog.dismiss()
 
     def texttospeech(self):
-        #myText1 = "i love you douaa"
+        #myText1 = "Real Madrid"
         #fh = open("C:\\PycharmProjects\\pythonProject\\P1_APP_ADaptation\\Classes_Test\\test.txt","r")
         #myText = fh.read().replace("\n", " ")
         language = 'en'
