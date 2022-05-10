@@ -1,0 +1,165 @@
+ScreenManager:
+    id: screen_manager
+    MenuScreen:
+    ProfileScreen:
+    UploadScreen:
+<MenuScreen>:
+    name: 'menu'
+    MDBoxLayout:
+        orientation:'vertical'
+        MDToolbar:
+            title:"All Services Adaptation"
+            left_action_items:[["menu",lambda x:None]]
+            right_action_items:[["magnify",lambda x:None]]
+        MDBottomNavigation:
+            panel_color:.23,.15,.31,1
+            MDBottomNavigationItem:
+                name:"storage screen"
+                text:"Services"
+                icon:'hammer-wrench'
+                MDScreen:
+                    name:'home'
+                    md_bg_color:56/255,40/255,81/255,1
+                    ScrollView:
+                        MDGridLayout:
+                            size_hint_y:2.3
+                            cols:1
+                            padding:[dp(15),dp(15),dp(15),dp(15)]
+                            spacing:dp(15)
+                            ElementCard:
+                                image:"images/calendar.png"
+                                text:"Text to Speech"
+                                subtext:""
+                                items_count:""
+                                on_press:root.manager.current = 'profile'
+                            ElementCard:
+                                image:"images/speech.png"
+                                text:"Speech To Text"
+                                subtext:""
+                                items_count:""
+                            ElementCard:
+                                image:"images/vdim.png"
+                                text:"Video To Images"
+                                subtext:""
+                                items_count:""
+                            ElementCard:
+                                image:"images/12.png"
+                                text:"Images To Video"
+                                subtext:""
+                                items_count:""
+                            ElementCard:
+                                image:"images/trans.png"
+                                text:"Translate"
+                                subtext:""
+                                items_count:""
+                            ElementCard:
+                                image:"images/dd.png"
+                                text:"Converter Documents"
+                                subtext:""
+                                items_count:""
+                            ElementCard:
+                                image:"images/map.png"
+                                text:"My Position"
+                                subtext:""
+                                items_count:""
+                            ElementCard:
+                                image:"images/setting.png"
+                                text:"Setting"
+                                subtext:""
+                                items_count:""
+
+            MDBottomNavigationItem:
+                name:"browse screen"
+                text:"middle terms"
+                icon:'format-align-middle'
+                MDScreen:
+                    md_bg_color:56/255,40/255,81/255,1
+                    MDBoxLayout:
+                        pos_hint:{'center_x':.5,'center_y':.5}
+                        orientation:'vertical'
+                        size_hint_y:.95
+                        size_hint_x:.5
+                        spacing:'40dp'
+                        ScrollView:
+                            MDList:
+                                id: container
+                                size_hint_x:1.5
+                        MDFillRoundFlatButton:
+                            text:'RECEIVE DATA FROM ARDUINO '
+                            pos_hint:{'center_x':.5 ,'center_y':.5}
+                            on_press: app.receivefromarduino()
+            MDBottomNavigationItem:
+                name:"share screen"
+                text:"Share"
+                icon:'share-variant'
+                MDScreen:
+                    md_bg_color:56/255,40/255,81/255,1
+                    MDBoxLayout:
+                        pos_hint:{'center_x':.5,'center_y':.5}
+                        orientation:'vertical'
+                        size_hint_y:.4
+                        size_hint_x:.4
+                        spacing:'40dp'
+                        Image:
+                            source:'images/file-transfer.png'
+                        MDBoxLayout:
+                            pos_hint:{'center_x':.5,'center_y':.5}
+                            adaptive_size:True
+                            spacing:'20dp'
+                            MDFillRoundFlatButton:
+                                text:' SEND  '
+                            MDFillRoundFlatButton:
+                                text:'RECEIVE'
+
+    
+
+<ProfileScreen>:
+    name: 'profile'
+    MDLabel:
+        text: 'Profile'
+        halign: 'center'
+    MDRectangleFlatButton:
+        text: 'Back'
+        pos_hint: {'center_x':0.5,'center_y':0.1}
+        on_press: root.manager.current = 'menu'
+
+<UploadScreen>:
+    name: 'upload'
+    MDLabel:
+        text: 'Upload'
+        halign: 'center'
+    MDRectangleFlatButton:
+        text: 'Back'
+        pos_hint: {'center_x':0.5,'center_y':0.1}
+        on_press: root.manager.current = 'menu'
+
+
+
+
+<ElementCard@MDCard>:
+    md_bg_color:69/255,55/255,86/255,1
+    padding:dp(15)
+    spacing:dp(15)
+    radius:dp(25)
+    ripple_behavior: True
+    image:''
+    text:""
+    items_count:""
+    subtext:''
+
+    orientation:'vertical'
+    Image:
+        source:root.image
+    MDBoxLayout:
+        orientation:'vertical'
+        MDLabel:
+            halign:"center"
+            text:root.text
+            font_style:"H6"
+        MDLabel:
+            halign:"center"
+            font_style:"Caption"
+            text:root.subtext
+        MDLabel:
+            halign:"center"
+            text:root.items_count

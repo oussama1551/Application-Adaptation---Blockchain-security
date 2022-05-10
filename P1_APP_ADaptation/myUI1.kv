@@ -1,0 +1,177 @@
+<MenuScreen>:
+    id : mn_screen
+    Screen:
+        name : "screen1"
+        MDBoxLayout:
+            orientation:'vertical'
+            MDToolbar:
+                title:"All Services Adaptation"
+                left_action_items:[["menu",lambda x:None]]
+                right_action_items:[["magnify",lambda x:None]]
+            MDBottomNavigation:
+                panel_color:.23,.15,.31,1
+                MDBottomNavigationItem:
+                    name:"storage screen"
+                    text:"Services"
+                    icon:'hammer-wrench'
+                    MDScreen:
+                        name:'home'
+                        md_bg_color:56/255,40/255,81/255,1
+                        ScrollView:
+                            MDGridLayout:
+                                size_hint_y:2.3
+                                cols:1
+                                padding:[dp(15),dp(15),dp(15),dp(15)]
+                                spacing:dp(15)
+                                ElementCard:
+                                    image:"images/calendar.png"
+                                    text:"Text to Speech"
+                                    subtext:""
+                                    items_count:""
+                                    on_press:root.current = "screen2"
+                                ElementCard:
+                                    image:"images/speech.png"
+                                    text:"Speech To Text"
+                                    subtext:""
+                                    items_count:""
+                                ElementCard:
+                                    image:"images/vdim.png"
+                                    text:"Video To Images"
+                                    subtext:""
+                                    items_count:""
+                                ElementCard:
+                                    image:"images/12.png"
+                                    text:"Images To Video"
+                                    subtext:""
+                                    items_count:""
+                                ElementCard:
+                                    image:"images/trans.png"
+                                    text:"Translate"
+                                    subtext:""
+                                    items_count:""
+                                ElementCard:
+                                    image:"images/dd.png"
+                                    text:"Converter Documents"
+                                    subtext:""
+                                    items_count:""
+                                ElementCard:
+                                    image:"images/map.png"
+                                    text:"My Position"
+                                    subtext:""
+                                    items_count:""
+                                ElementCard:
+                                    image:"images/setting.png"
+                                    text:"Setting"
+                                    subtext:""
+                                    items_count:""
+
+                MDBottomNavigationItem:
+                    name:"browse screen"
+                    text:"middle terms"
+                    icon:'format-align-middle'
+                    MDScreen:
+                        md_bg_color:56/255,40/255,81/255,1
+                        MDBoxLayout:
+                            pos_hint:{'center_x':.5,'center_y':.5}
+                            orientation:'vertical'
+                            size_hint_y:.95
+                            size_hint_x:.5
+                            spacing:'40dp'
+                            ScrollView:
+                                MDList:
+                                    id: container
+                                    size_hint_x:1.5
+                            MDFillRoundFlatButton:
+                                text:'RECEIVE DATA FROM ARDUINO '
+                                pos_hint:{'center_x':.5 ,'center_y':.5}
+                                on_press: app.receivefromarduino()
+                MDBottomNavigationItem:
+                    name:"share screen"
+                    text:"Share"
+                    icon:'share-variant'
+                    MDScreen:
+                        md_bg_color:56/255,40/255,81/255,1
+                        MDBoxLayout:
+                            pos_hint:{'center_x':.5,'center_y':.5}
+                            orientation:'vertical'
+                            size_hint_y:.4
+                            size_hint_x:.4
+                            spacing:'40dp'
+                            Image:
+                                source:'images/file-transfer.png'
+                            MDBoxLayout:
+                                pos_hint:{'center_x':.5,'center_y':.5}
+                                adaptive_size:True
+                                spacing:'20dp'
+                                MDFillRoundFlatButton:
+                                    text:' SEND  '
+                                MDFillRoundFlatButton:
+                                    text:'RECEIVE'
+
+    Screen:
+        name : "screen2"
+        MDBoxLayout:
+            orientation:'vertical'
+            md_bg_color:56/255,40/255,81/255,1
+            MDToolbar:
+                title:"Text To Speech"
+                left_action_items:[["arrow-left",lambda *args : setattr(mn_screen, "current", "screen1")]]
+                right_action_items: [["dots-vertical", lambda x: app.callback()]]
+            MDScreen:
+                name:'screen text to speech'
+                MDBoxLayout:
+                    orientation:'vertical'
+                    padding:[dp(30),dp(30),dp(30),dp(30)]
+                    spacing:dp(20)
+                    MDTextField:
+                        id :textfieldspeech
+                        color_mode: 'primary'
+                        multiline: True
+                        hint_text: "Enter the text you need to adapt.."
+                        mode: "rectangle"
+                        helper_text_mode: "on_focus"
+                        line_color_focus: 1, 1, 1, 1
+                    MDFillRoundFlatButton:
+                        text: "   SAVE AND ADAPT   "
+                        pos_hint:{'center_x':.5 ,'top': 1}
+                        spacing:dp(115)
+                        on_press: app.savetextfromtextfield()
+                    MDBoxLayout:
+                        orientation:'vertical'
+                    MDBoxLayout:
+                        orientation:'vertical'
+                    
+
+                    
+
+
+
+
+
+<ElementCard@MDCard>:
+    md_bg_color:69/255,55/255,86/255,1
+    padding:dp(15)
+    spacing:dp(15)
+    radius:dp(25)
+    ripple_behavior: True
+    image:''
+    text:""
+    items_count:""
+    subtext:''
+
+    orientation:'vertical'
+    Image:
+        source:root.image
+    MDBoxLayout:
+        orientation:'vertical'
+        MDLabel:
+            halign:"center"
+            text:root.text
+            font_style:"H6"
+        MDLabel:
+            halign:"center"
+            font_style:"Caption"
+            text:root.subtext
+        MDLabel:
+            halign:"center"
+            text:root.items_count
