@@ -21,7 +21,7 @@ class testAPP(MDApp):
     dialog = None
    
     def build(self):
-        self.title='UI app'
+        self.title='Adaptation Application'
         Window.size = (380, 600)
         self.theme_cls.theme_style = "Dark"
         self.theme_cls.primary_palette = "DeepPurple"
