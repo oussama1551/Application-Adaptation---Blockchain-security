@@ -66,7 +66,7 @@ class testAPP(MDApp):
                         print("Sound High")
                         self.show_alert_dialog()
 
-                else: print("no data")
+                else: print("no data received")
             self.ser.close()
 
     def show_alert_dialog(self):
