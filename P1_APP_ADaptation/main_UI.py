@@ -19,7 +19,7 @@ class MenuScreen(ScreenManager):
 
 class testAPP(MDApp):
     dialog = None
-    #myText1 = "i love you douaa"
+    #myText1 = "Real MAdrid"
     fh = open("C:\\PycharmProjects\\pythonProject\\P1_APP_ADaptation\\Classes_Test\\test.txt","r")
     myText = fh.read().replace("\n", " ")
     language = 'en'
