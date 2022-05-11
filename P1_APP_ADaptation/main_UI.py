@@ -1,4 +1,6 @@
+from importlib.resources import path
 from logging import root
+from select import select
 from kivymd.app import MDApp
 from kivy.lang.builder import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
@@ -13,14 +15,35 @@ import os
 from kivymd.uix.filemanager import MDFileManager
 
 
-class MenuScreen(ScreenManager):
+class MenuScreen(ScreenManager):   
     pass
 
 
 
 class testAPP(MDApp):
     dialog = None
-   
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.file_manager_obj = MDFileManager(
+            select_path=self.select_path,
+            exit_manager=self.exit_manager,
+            #preview=True,
+            #show_hidden_files=True
+
+
+        )
+    def select_path(self,path):
+        print(path)
+        self.textfile_path = path
+        self.exit_manager()
+
+    def open_file_manager(self):
+        self.file_manager_obj.show('/')
+ 
+    def exit_manager(self):
+        self.file_manager_obj.close() 
+       
     def build(self):
         self.title='Adaptation Application'
         Window.size = (380, 600)
@@ -89,9 +112,18 @@ class testAPP(MDApp):
         self.root.transition.direction = "left"
         self.dialog.dismiss()
 
+    def texttospeech_FileText(self):
+        #myText1 = "Real Madrid"
+        fh = open(self.textfile_path,"r")
+        myText = fh.read().replace("\n", " ")
+        language = 'en'
+        output = gTTS(text=myText,lang=language,slow=False)
+        output.save("output1.mp3")
+        os.system("start output1.mp3")
+
     def texttospeech(self):
         #myText1 = "Real Madrid"
-        #fh = open("C:\\PycharmProjects\\pythonProject\\P1_APP_ADaptation\\Classes_Test\\test.txt","r")
+        #fh = open(self.textfile_path,"r")
         #myText = fh.read().replace("\n", " ")
         language = 'en'
         output = gTTS(text=self.textfieldtext,lang=language,slow=False)
@@ -102,6 +134,8 @@ class testAPP(MDApp):
         self.textfieldtext = self.root.ids.textfieldspeech.text
         print(self.textfieldtext)
         self.texttospeech()
+    def adaptTextfile(self):
+        self.texttospeech_FileText()
 
            
 
