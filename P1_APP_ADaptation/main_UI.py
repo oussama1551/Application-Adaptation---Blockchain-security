@@ -64,7 +64,7 @@ class testAPP(MDApp):
                 if self.line:
                     string = self.line.decode()  # convert the byte string to a unicode string
                     # convert the unicode string to an int
-                    f = float(string)
+                    f = float(string) 
                     print(string)
                     self.data.append(string)
                     if f < 300 :
@@ -110,7 +110,7 @@ class testAPP(MDApp):
         self.dialog.dismiss()
 
     def texttospeech_FileText(self):
-        #myText1 = "Real Madrid"
+        #myText1 = "Real Madrid" hhhhhh
         fh = open(self.textfile_path,"r")
         myText = fh.read().replace("\n", " ")
         language = 'en'
