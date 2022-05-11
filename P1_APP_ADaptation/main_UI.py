@@ -14,12 +14,9 @@ from gtts import gTTS
 import os
 from kivymd.uix.filemanager import MDFileManager
 
-
+   
 class MenuScreen(ScreenManager):   
     pass
-
-
-
 class testAPP(MDApp):
     dialog = None
 
