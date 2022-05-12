@@ -40,6 +40,7 @@
                                     text:"Video To Images"
                                     subtext:""
                                     items_count:""
+                                    on_press:root.current = "screen4"
                                 ElementCard:
                                     image:"images/12.png"
                                     text:"Images To Video"
@@ -156,11 +157,60 @@
             orientation:'vertical'
             md_bg_color:56/255,40/255,81/255,1
             MDToolbar:
-                title:"Text To Speech"
+                title:"Speech To Text"
                 left_action_items:[["arrow-left",lambda *args : setattr(mn_screen, "current", "screen1")]]
                 right_action_items: [["dots-vertical", lambda x: app.callback()]]
             MDScreen:
                 name:'screen speech to text'
+                MDFillRoundFlatButton:
+                    text: "   Press For Record And say Something    "
+                    pos_hint:{'center_x':.5 ,'center_y':.9 }
+                    spacing:dp(115)
+                    on_press: app.recordsound()
+                MDLabel:
+                    id : labelwhatdoyousay
+                    pos_hint:{'center_x':.5 ,'center_y':.8}
+                    text: ""
+                    halign: "center"
+                MDFillRoundFlatButton:
+                    text: "   Save my Voice And Open file Sound    "
+                    pos_hint:{'center_x':.5 ,'center_y':.6 }
+                    spacing:dp(115)
+                    on_release: app.savesound()
+                MDFillRoundFlatButton:
+                    text: "   Save Text And Open File Text    "
+                    pos_hint:{'center_x':.5 ,'center_y':.45 }
+                    spacing:dp(115)
+                    on_press: app.opentext()
+                MDFillRoundFlatButton:
+                    text: "   Load Other Sound File    "
+                    pos_hint:{'center_x':.5 ,'center_y':.3 }
+                    spacing:dp(115)
+                    on_release:app.open_file_manager()
+                MDFillRoundFlatButton:
+                    text: "   Adapt To Text    "
+                    pos_hint:{'center_x':.5 ,'center_y':.2 }
+                    spacing:dp(115)
+                    on_release:app.adaptSound()
+                MDLabel:
+                    id : lastlabel
+                    pos_hint:{'center_x':.5 ,'center_y':.1}
+                    text: ""
+                    halign: "center"
+
+    Screen:
+        name : "screen4"
+        MDBoxLayout:
+            orientation:'vertical'
+            md_bg_color:56/255,40/255,81/255,1
+            MDToolbar:
+                title:"Video To Images"
+                left_action_items:[["arrow-left",lambda *args : setattr(mn_screen, "current", "screen1")]]
+                right_action_items: [["dots-vertical", lambda x: app.callback()]]
+            MDScreen:
+                name:'Video To Images'
+                               
+
                 
                     
 

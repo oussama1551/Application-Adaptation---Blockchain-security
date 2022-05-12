@@ -13,6 +13,9 @@ from kivymd.uix.dialog import MDDialog
 from gtts import gTTS
 import os
 from kivymd.uix.filemanager import MDFileManager
+from email.mime import audio
+import speech_recognition as sr
+
 
    
 class MenuScreen(ScreenManager):   
@@ -105,7 +108,7 @@ class testAPP(MDApp):
     def close_dialog(self,obj):
         self.dialog.dismiss()
     def change_screen(self,obj):
-        self.root.current = "screen2"
+        self.root.current = "screen3"
         self.root.transition.direction = "left"
         self.dialog.dismiss()
 
@@ -134,7 +137,51 @@ class testAPP(MDApp):
     def adaptTextfile(self):
         self.texttospeech_FileText()
 
+    def recordsound(self):
+        self.recordaction()
+    def recordaction(self):
+        r = sr.Recognizer()
+        self.outfileaudio_Text = open('data_audio.txt', 'w')
+
+       
+        with sr.Microphone() as source:
+            r.adjust_for_ambient_noise(source)
+            #self.root.ids.labelsay.text = "Please say something .."
+            print("Please say something ..")
+            self.audio = r.listen(source)
+            try:
+                #print("you have said : \n "+ r.recognize_google(audio))
+                self.root.ids.labelwhatdoyousay.text = "you have said : \n "+ r.recognize_google(self.audio)
+                self.audio_text = r.recognize_google(self.audio)
+                self.outfileaudio_Text.write(self.audio_text)
+                self.outfileaudio_Text.close()
+            except Exception as e:
+                print("Error : "+ str(e))
            
+
+    def savesound(self):
+        print("teststst")
+        with open("recodedaudio.wav","wb") as f:
+            f.write(self.audio.get_wav_data())
+        os.system("recodedaudio.wav")
+    def opentext(self):
+        os.system("data_audio.txt")
+
+
+    def adaptSound(self):
+        filesound = open(self.textfile_path,"rb")
+        r = sr.Recognizer()
+        with sr.AudioFile(filesound) as source:
+            # listen for the data (load audio to memory)
+            audio_data = r.record(source)
+            # recognize (convert from speech to text)
+            text = r.recognize_google(audio_data)
+            print(text)
+            self.root.ids.lastlabel.text = text
+
+
+
+        
 
     
 
