@@ -1,18 +1,43 @@
-# Opens the inbuilt camera of laptop to capture video.
-webCam = cv2.VideoCapture(0)
+
+# Importing all necessary libraries
+import cv2
+import os
+  
+# Read the video from specified path
+cam = cv2.VideoCapture("C:\PycharmProjects\pythonProject\P1_APP_ADaptation\One Piece video test.mp4")
+  
+try:
+      
+    # creating a folder named data
+    if not os.path.exists('data'):
+        os.makedirs('data')
+  
+# if not created then raise error
+except OSError:
+    print ('Error: Creating directory of data')
+  
+# frame
 currentframe = 0
-
-while (True):
-    success, frame = webCam.read()
-
-    # Save Frame by Frame into disk using imwrite method
-    cv2.imshow("Output", frame)
-    cv2.imwrite('Frame' + str(currentframe) + '.jpg', frame)
-    currentframe += 1
-
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+  
+while(True):
+      
+    # reading from frame
+    ret,frame = cam.read()
+  
+    if ret:
+        # if video is still left continue creating images
+        name = './data/frame' + str(currentframe) + '.jpg'
+        print ('Creating...' + name)
+  
+        # writing the extracted images
+        cv2.imwrite(name, frame)
+  
+        # increasing counter so that it will
+        # show how many frames are created
+        currentframe += 1
+    else:
         break
-
-
-webCam.release()
+  
+# Release all space and windows once done
+cam.release()
 cv2.destroyAllWindows()
