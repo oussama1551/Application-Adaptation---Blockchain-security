@@ -1,28 +1,18 @@
-from email.mime import audio
-import speech_recognition as sr
+# Opens the inbuilt camera of laptop to capture video.
+webCam = cv2.VideoCapture(0)
+currentframe = 0
+
+while (True):
+    success, frame = webCam.read()
+
+    # Save Frame by Frame into disk using imwrite method
+    cv2.imshow("Output", frame)
+    cv2.imwrite('Frame' + str(currentframe) + '.jpg', frame)
+    currentframe += 1
+
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
 
 
-
-
-def main():
-    r = sr.Recognizer()
-    outfileaudio_Text = open('data_audio.txt', 'w')
-
-    with sr.Microphone() as source:
-        r.adjust_for_ambient_noise(source)
-        print("Please say something ..")
-        audio = r.listen(source)
-        try:
-            print("you have said : \n "+ r.recognize_google(audio))
-            audio_text = r.recognize_google(audio)
-            outfileaudio_Text.write(audio_text)
-            outfileaudio_Text.close()
-            print("Audio Recorder Successfully\n")
-        except Exception as e:
-            print("Error : "+ str(e))
-
-        with open("recodedaudio.wav","wb") as f:
-            f.write(audio.get_wav_data())
-
-if __name__=="__main__":
-    main()
+webCam.release()
+cv2.destroyAllWindows()

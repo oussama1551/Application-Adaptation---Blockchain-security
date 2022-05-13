@@ -15,14 +15,16 @@ import os
 from kivymd.uix.filemanager import MDFileManager
 from email.mime import audio
 import speech_recognition as sr
+from kivy.clock import Clock
 
 
-   
+
+
 class MenuScreen(ScreenManager):   
     pass
 class testAPP(MDApp):
     dialog = None
-
+    i = 0
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.file_manager_obj = MDFileManager(
@@ -30,35 +32,36 @@ class testAPP(MDApp):
             exit_manager=self.exit_manager,
             #preview=True,
             #show_hidden_files=True
-
-
         )
+        
     def select_path(self,path):
         print(path)
         self.textfile_path = path
         self.exit_manager()
-
     def open_file_manager(self):
         self.file_manager_obj.show('/')
- 
     def exit_manager(self):
         self.file_manager_obj.close() 
        
     def build(self):
         self.title='Adaptation Application'
-        Window.size = (380, 600)
+        Window.size = (360, 600)
         self.theme_cls.theme_style = "Dark"
         self.theme_cls.primary_palette = "DeepPurple"
         self.data = []
         Builder.load_file('myUI1.kv')
         return MenuScreen()
+    def on_start(self):
+        Clock.schedule_once(self.login, 7)
+        Clock.schedule_interval(self.startprogress_bar,0.5)
+        
+    def login(self,*args):
+        self.root.current = "screen1"
     
-
     def receivefromarduino(self):
         print("test ")
         self.getData()
         #self.show_alert_dialog()
-
     def getData(self):
             self.ser = serial.Serial('COM3', 9800, timeout=1)
             time.sleep(2)
@@ -73,19 +76,15 @@ class testAPP(MDApp):
                     if f < 300 :
                         self.root.ids.container.add_widget(
                             OneLineListItem(text=f"{string} -- Sound Low",theme_text_color="Primary")
-                        
                     )
                     else:
                         self.root.ids.container.add_widget(
                             OneLineListItem(text=f"{string} -- Sound High",theme_text_color="Error")
-                            
                         )
                         print("Sound High")
                         self.show_alert_dialog()
-
                 else: print("no data received")
             self.ser.close()
-
     def show_alert_dialog(self):
         if not self.dialog:
             self.dialog = MDDialog(
@@ -97,11 +96,8 @@ class testAPP(MDApp):
                     ),
                     MDRectangleFlatButton(
                         text = "َ Approval",on_release =self.change_screen
-
-
                     )
                 ]
-                
             )
         self.dialog.open()
 
@@ -111,7 +107,6 @@ class testAPP(MDApp):
         self.root.current = "screen3"
         self.root.transition.direction = "left"
         self.dialog.dismiss()
-
     def texttospeech_FileText(self):
         #myText1 = "Real Madrid" hhhhhh
         fh = open(self.textfile_path,"r")
@@ -120,7 +115,6 @@ class testAPP(MDApp):
         output = gTTS(text=myText,lang=language,slow=False)
         output.save("output1.mp3")
         os.system("start output1.mp3")
-
     def texttospeech(self):
         #myText1 = "Real Madrid"
         #fh = open(self.textfile_path,"r")
@@ -129,7 +123,6 @@ class testAPP(MDApp):
         output = gTTS(text=self.textfieldtext,lang=language,slow=False)
         output.save("output1.mp3")
         os.system("start output1.mp3")
-
     def savetextfromtextfield(self):
         self.textfieldtext = self.root.ids.textfieldspeech.text
         print(self.textfieldtext)
@@ -142,8 +135,6 @@ class testAPP(MDApp):
     def recordaction(self):
         r = sr.Recognizer()
         self.outfileaudio_Text = open('data_audio.txt', 'w')
-
-       
         with sr.Microphone() as source:
             r.adjust_for_ambient_noise(source)
             #self.root.ids.labelsay.text = "Please say something .."
@@ -157,8 +148,6 @@ class testAPP(MDApp):
                 self.outfileaudio_Text.close()
             except Exception as e:
                 print("Error : "+ str(e))
-           
-
     def savesound(self):
         print("teststst")
         with open("recodedaudio.wav","wb") as f:
@@ -166,8 +155,6 @@ class testAPP(MDApp):
         os.system("recodedaudio.wav")
     def opentext(self):
         os.system("data_audio.txt")
-
-
     def adaptSound(self):
         filesound = open(self.textfile_path,"rb")
         r = sr.Recognizer()
@@ -178,6 +165,13 @@ class testAPP(MDApp):
             text = r.recognize_google(audio_data)
             print(text)
             self.root.ids.lastlabel.text = text
+    def startprogress_bar(self,*args):
+        try:
+            self.i += 10
+            self.root.ids.progress_bar.value = self.i
+        except:
+            Clock.unschedule(self.startprogress_bar)
+
 
 
 
