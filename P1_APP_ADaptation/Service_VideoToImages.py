@@ -2,13 +2,16 @@
 # Importing all necessary libraries
 import cv2
 import os
-  
+import glob
+from PIL import Image 
+
+filep = ""
 # Read the video from specified path
-cam = cv2.VideoCapture("C:\PycharmProjects\pythonProject\P1_APP_ADaptation\One Piece video test.mp4")
 
-
-
+print("oussamamaamamam")
 def convert():
+    cam = cv2.VideoCapture(filep)
+
     try:
         
         # creating a folder named data
@@ -45,4 +48,16 @@ def convert():
     cam.release()
     cv2.destroyAllWindows()
 
+
+
+def ddeconvert():
+    frameSize = (500, 500)
+
+    out = cv2.VideoWriter('output_video.avi',cv2.VideoWriter_fourcc(*'DIVX'), 60, frameSize)
+
+    for filename in glob.glob('imagetoconvert/*.jpg'):
+        img = cv2.imread(filename)
+        out.write(img)
+
+    out.release()
 

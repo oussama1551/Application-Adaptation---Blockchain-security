@@ -16,6 +16,9 @@ from kivymd.uix.filemanager import MDFileManager
 from email.mime import audio
 import speech_recognition as sr
 from kivy.clock import Clock
+import Service_VideoToImages
+from kivy.uix.videoplayer import VideoPlayer
+import glob
 
 
 
@@ -24,23 +27,35 @@ from kivy.clock import Clock
 class MenuScreen(ScreenManager):   
     pass
 class testAPP(MDApp):
+    
     dialog = None
     i = 0
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.file_manager_obj = MDFileManager(
-            select_path=self.select_path,
+            select_path=self.selectFunction,
             exit_manager=self.exit_manager,
             #preview=True,
             #show_hidden_files=True
         )
-        
-    def select_path(self,path):
-        print(path)
-        self.textfile_path = path
-        self.exit_manager()
+    def selectFunction(self,path):
+        if self.root.current == "screen3":
+            print(path)
+            self.textfile_path = path
+            self.exit_manager()
+
+        elif self.root.current == "screen4":
+            Service_VideoToImages.filep = path
+            self.loadvideo(path)
+            self.exit_manager()
+
+
+
+
     def open_file_manager(self):
         self.file_manager_obj.show('/')
+    def open_file_manager_myfolder(self):
+        self.file_manager_obj.show('C:\PycharmProjects\pythonProject\data')
     def exit_manager(self):
         self.file_manager_obj.close() 
        
@@ -166,12 +181,22 @@ class testAPP(MDApp):
             text = r.recognize_google(audio_data)
             print(text)
             self.root.ids.lastlabel.text = text
+
+    
     def startprogress_bar(self,*args):
         try:
             self.i += 10
             self.root.ids.progress_bar.value = self.i
         except:
             Clock.unschedule(self.startprogress_bar)
+    
+    def lanceconvertvideotoimages(self):
+        Service_VideoToImages.convert()
+    def loadvideo(self,pathVID):
+        self.root.ids.screenviedo.add_widget(VideoPlayer(source = pathVID,state='play')
+                )
+    def lancdeconvert(self):
+        Service_VideoToImages.ddeconvert()
 
 
 
