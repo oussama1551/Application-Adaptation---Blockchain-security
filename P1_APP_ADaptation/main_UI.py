@@ -50,8 +50,6 @@ class testAPP(MDApp):
             self.exit_manager()
 
 
-
-
     def open_file_manager(self):
         self.file_manager_obj.show('/')
     def open_file_manager_myfolder(self):
