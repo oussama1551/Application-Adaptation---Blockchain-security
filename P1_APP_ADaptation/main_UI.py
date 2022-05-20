@@ -1,6 +1,7 @@
 from importlib.resources import path
 from logging import root
 from select import select
+from tkinter.ttk import Label
 from kivymd.app import MDApp
 from kivy.lang.builder import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
@@ -19,6 +20,7 @@ from kivy.clock import Clock
 import Service_VideoToImages
 from kivy.uix.videoplayer import VideoPlayer
 import glob
+from kivy.core.text import LabelBase
 
 
 
@@ -27,7 +29,6 @@ import glob
 class MenuScreen(ScreenManager):   
     pass
 class testAPP(MDApp):
-    
     dialog = None
     i = 0
     def __init__(self, **kwargs):
@@ -66,11 +67,11 @@ class testAPP(MDApp):
         Builder.load_file('myUI1.kv')
         return MenuScreen()
     def on_start(self):
-        Clock.schedule_once(self.login, 7)
-        Clock.schedule_interval(self.startprogress_bar,0.5)
+        Clock.schedule_once(self.login, 5)
+        Clock.schedule_interval(self.startprogress_bar,0)
         
     def login(self,*args):
-        self.root.current = "screen1"
+        self.root.current = "screenlogin"
     
     def receivefromarduino(self):
         print("test ")
@@ -183,7 +184,7 @@ class testAPP(MDApp):
     
     def startprogress_bar(self,*args):
         try:
-            self.i += 10
+            self.i += 3
             self.root.ids.progress_bar.value = self.i
         except:
             Clock.unschedule(self.startprogress_bar)
@@ -195,15 +196,20 @@ class testAPP(MDApp):
                 )
     def lancdeconvert(self):
         Service_VideoToImages.ddeconvert()
-
-
-
-
-        
-
     
 
 
 
+
+
+
+
+
+
+
+LabelBase.register(name="MPoppins",fn_regular="C:\\PycharmProjects\\pythonProject\\P1_APP_ADaptation\\font\\Poppins"
+                                              "-Medium.ttf")
+LabelBase.register(name="BPoppins",fn_regular="C:\\PycharmProjects\\pythonProject\\P1_APP_ADaptation\\font\\Poppins"
+                                              "-SemiBold.ttf")
 
 testAPP().run()

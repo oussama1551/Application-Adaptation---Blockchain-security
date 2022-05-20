@@ -17,6 +17,23 @@
                     orientation:"horizontal"
                     value: 0
     Screen:
+        MDNavigationLayout:
+            ScreenManager:
+                Screen:
+                    BoxLayout:
+                        orientation: 'vertical'
+                        MDToolbar:
+                            title: "Navigation Drawer"
+                            elevation: 10
+                            left_action_items: [['menu', lambda x: nav_drawer.set_state("open")]]
+
+                        
+
+
+            MDNavigationDrawer:
+                id: nav_drawer
+
+    Screen:
         name : "screen1"
         MDBoxLayout:
             orientation:'vertical'
@@ -254,13 +271,214 @@
                 left_action_items:[["arrow-left",lambda *args : setattr(mn_screen, "current", "screen1")]]
                 right_action_items: [["dots-vertical", lambda x: app.callback()]]
             MDScreen:
-                
                 name:'Images To video'
                 MDFillRoundFlatButton:
                     text: "   Deconvert    "
                     pos_hint:{'center_x':.5 ,'center_y':.9 }
                     spacing:dp(115)
                     on_release:app.lancdeconvert()
+    Screen:
+        name : "screenlogin"
+        MDScreen:
+            MDFloatLayout:
+                md_bg_color:1, 1, 1, 1
+                Image:
+                    source:"Images/login.png"
+                    pos_hint:{'center_x':.5 ,'center_y':.77 }
+                    size_hint: .8,.8
+                MDLabel:
+                    text: "H e l l o !"
+                    font_name: 'BPoppins'
+                    font_size: "23sp"
+                    pos_hint:{'center_y':.55 }
+                    halign:"center"
+                    color: rgba(56,40,81,255)
+                MDLabel:
+                    text: "Best place to Find All Tools to make "
+                    font_name: 'MPoppins'
+                    font_size: "13sp"
+                    size_hint_x:.85
+                    pos_hint:{'center_x':.5 ,'center_y':.45 }
+                    halign:"center"
+                    color: rgba(56,40,81,255)
+                MDLabel:
+                    text: "your life easy"
+                    font_name: 'MPoppins'
+                    font_size: "13sp"
+                    size_hint_x:
+                    pos_hint:{'center_x':.5 ,'center_y':.42 }
+                    halign:"center"
+                    color: rgba(56,40,81,255)
+                Button:
+                    text: "LOGIN"
+                    size_hint:.66,.065
+                    background_color:0, 0, 0, 0
+                    font_name:"BPoppins"
+                    pos_hint:{'center_x':.5 ,'center_y':.27 }
+                    on_release: root.current = "screenlogin_UI"
+                    canvas.before:
+                        Color:
+                            rgb :rgba(56,40,81,255)
+                        RoundedRectangle:
+                            size: self.size
+                            pos:self.pos
+                            radius:[5]
+                Button:
+                    text: "SIGNUP"
+                    size_hint:.66,.065
+                    background_color:0, 0, 0, 0
+                    font_name:"BPoppins"
+                    pos_hint:{'center_x':.5 ,'center_y':.19 }
+                    color: rgba(56,40,81,255)
+                    on_release: root.current = "screenlogin_UI"
+                    canvas.before:
+                        Color:
+                            rgb :rgba(56,40,81,255)
+                        Line:
+                            width: 1.2
+                            rounded_rectangle: self.x, self.y, self.width, self.height, 5, 5, 5, 5, 100
+    Screen:
+        name : "screenlogin_UI"
+        MDScreen:
+            MDFloatLayout:
+                md_bg_color:1, 1, 1, 1
+                MDIconButton:
+                    icon:"arrow-left"
+                    pos_hint:{'center_y':.95 }
+                    theme_text_color:"Custom"
+                    text_color:rgba(56,40,81,255)
+                MDLabel:
+                    text: "W E L C O M E !"
+                    font_name: 'BPoppins'
+                    font_size: "26sp"
+                    pos_hint:{'center_x':.6 ,'center_y':.88 }
+                    color: rgba(56,40,81,255)
+                MDLabel:
+                    text: "Sign In to continue"
+                    font_name: 'MPoppins'
+                    font_size: "18sp"
+                    pos_hint:{'center_x':.6 ,'center_y':.82 }
+                    color: rgba(56,40,81,255)
+                MDFloatLayout:
+                    size_hint: .7,.07
+                    pos_hint:{'center_x':.5 ,'center_y':.67 }   
+                    TextInput:
+                        hint_text:"Email"
+                        font_name:"MPoppins"
+                        size_hint_y:.75
+                        pos_hint:{'center_x':.43 ,'center_y':.5 }
+                        background_color:1, 1, 1, 0
+                        foreground_color: rgba(0, 0, 59, 255)
+                        cursor_color:rgba(0, 0, 59, 255)
+                        font_size:"14sp"
+                        cursor_width:"2sp"
+                        multiline:False
+                    MDFloatLayout:
+                        pos_hint:{'center_x':.45 ,'center_y':.0 }
+                        size_hint_y:.03
+                        md_bg_color:rgba(56,40,81,255)
+                MDFloatLayout:
+                    size_hint: .7,.07
+                    pos_hint:{'center_x':.5 ,'center_y':.57 }   
+                    TextInput:
+                        hint_text:"Password"
+                        font_name:"MPoppins"
+                        size_hint_y:.75
+                        pos_hint:{'center_x':.43 ,'center_y':.5 }
+                        background_color:1, 1, 1, 0
+                        foreground_color: rgba(0, 0, 59, 255)
+                        cursor_color:rgba(0, 0, 59, 255)
+                        font_size:"14sp"
+                        cursor_width:"2sp"
+                        multiline:False
+                        password:True
+                    MDFloatLayout:
+                        pos_hint:{'center_x':.45 ,'center_y':.0 }
+                        size_hint_y:.03
+                        md_bg_color:rgba(56,40,81,255)
+                Button:
+                    text: "LOGIN"
+                    size_hint:.66,.065
+                    background_color:0, 0, 0, 0
+                    font_name:"BPoppins"
+                    pos_hint:{'center_x':.5 ,'center_y':.40 }
+                    on_release: root.current = "screen1"
+                    canvas.before:
+                        Color:
+                            rgb :rgba(56,40,81,255)
+                        RoundedRectangle:
+                            size: self.size
+                            pos:self.pos
+                            radius:[5]
+                MDTextButton:
+                    text:"Forgot Password ?"
+                    pos_hint:{'center_x':.5 ,'center_y':.38}
+                    color:rgba(56,40,81,255)
+                    font_size:"12sp"
+                    font_name:"BPoppins"
+                MDLabel:
+                    text: "or"
+                    color:rgba(56,40,81,255)
+                    pos_hint:{'center_y':.32}
+                    font_size:"13sp"
+                    font_name:"BPoppins"
+                    halign:"center"
+                MDFloatLayout:
+                    pos_hint:{'center_x':.3 ,'center_y':.315 }
+                    size_hint:.3,.002
+                    md_bg_color:rgba(56,40,81,255)    
+                MDFloatLayout:
+                    pos_hint:{'center_x':.7 ,'center_y':.315 }
+                    size_hint:.3,.002
+                    md_bg_color:rgba(56,40,81,255)    
+                MDLabel:
+                    text: "Sociel Media Login"
+                    color:rgba(56,40,81,255)
+                    pos_hint:{'center_y':.25}
+                    font_size:"13sp"
+                    font_name:"BPoppins"
+                    halign:"center"
+                MDGridLayout:
+                    md_bg_color:1, 1, 1, 1
+                    cols:2
+                    size_hint:.25,.07
+                    pos_hint:{'center_x':.5 ,'center_y':.17 }
+                    Image:
+                        source:"Images/gggggggg.png"
+                    Image:
+                        source:"Images/fb.png"
+                MDLabel:
+                    text: "Don't have an account ?"
+                    color:rgba(56,40,81,255)
+                    pos_hint:{'center_x':.72 ,'center_y':.09 }
+                    font_size:"11sp"
+                    font_name:"BPoppins"
+                MDTextButton:
+                    text:"Sign up"
+                    pos_hint:{'center_x':.72,'center_y':.091}
+                    color:rgba(56,40,81,255)
+                    font_size:"12sp"
+                    font_name:"BPoppins"
+
+                    
+
+
+
+
+                    
+
+                
+
+                        
+
+
+        
+            
+
+
+                     
+                            
+
                 
                 
 
