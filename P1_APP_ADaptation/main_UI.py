@@ -2,9 +2,11 @@ from importlib.resources import path
 from logging import root
 from select import select
 from tkinter.ttk import Label
+from unicodedata import name
 from kivymd.app import MDApp
 from kivy.lang.builder import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.boxlayout import BoxLayout
 from kivy.core.window import Window
 import serial
 import time
@@ -21,13 +23,43 @@ import Service_VideoToImages
 from kivy.uix.videoplayer import VideoPlayer
 import glob
 from kivy.core.text import LabelBase
+from kivymd.theming import ThemableBehavior
+from kivymd.uix.list import MDList
+from kivymd.uix.progressbar import MDProgressBar
 
 
 
+class Content(BoxLayout):
+    pass
 
+class ContentNavigationDrawer(BoxLayout):
+    pass
 
 class MenuScreen(ScreenManager):   
     pass
+
+
+
+class DrawerList(ThemableBehavior, MDList):
+    def set_color_item(self, instance_item):
+        '''Called when tap on a menu item.'''
+
+        # Set the color of the icon and text for the menu item.
+        for item in self.children:
+            if item.text_color == self.theme_cls.primary_color:
+                item.text_color = self.theme_cls.text_color
+                break
+        instance_item.text_color = self.theme_cls.primary_color
+
+
+
+
+
+
+
+
+
+
 class testAPP(MDApp):
     dialog = None
     i = 0
@@ -49,6 +81,47 @@ class testAPP(MDApp):
             Service_VideoToImages.filep = path
             self.loadvideo(path)
             self.exit_manager()
+        elif self.root.current == "screen1":
+            print(path)
+            
+            self.exit_manager()
+            for fp in [path]:
+                # Split the extension from the path and normalise it to lowercase.
+                ext = os.path.splitext(fp)[-1].lower()
+
+                # Now we can simply use == to check for equality, no need for wildcards.
+                if ext == ".mp3":
+                    print(fp, "is an mp3!")
+                    self.FileType=fp, "is an mp3!"
+                    self.show_alert_dialog()
+
+                elif ext == ".mp4":
+                    print(fp, "is an mp4!")
+                    self.FileType=fp, "is an mp4!"
+                    self.show_alert_dialog()
+                elif ext == ".avi":
+                    print(fp, "is an avi!")
+                    self.FileType=fp, "is an avi!"
+                    self.show_alert_dialog()
+                elif ext == ".wav":
+                    print(fp, "is an wav!")
+                    self.FileType=fp, "is an wav!"
+                    self.show_alert_dialog()
+                elif ext == ".png":
+                    print(fp, "is an png!")
+                    self.FileType=fp, "is an png!"
+                    self.show_alert_dialog()
+                elif ext == ".pdf":
+                    print(fp, "is an pdf!")
+                    self.FileType=fp, "is an pdf!"
+                    self.show_alert_dialog()
+                elif ext == ".jpg":
+                    print(fp, "is an jpg!")
+                    self.FileType=fp, "is an jpg!"
+                    self.show_alert_dialog()
+                else:
+                    print(fp, "is an unknown file format.")
+                    self.FileType=fp, "is an unknown file format."
 
 
     def open_file_manager(self):
@@ -103,21 +176,32 @@ class testAPP(MDApp):
     def show_alert_dialog(self):
         if not self.dialog:
             self.dialog = MDDialog(
-                title = "Attention",
-                text = "The system detects that the volume is too high, the Adaptation will start within seconds ..",
+                title = "Notice",
+                text = str(self.FileType) + "the System will check possibilty Adaptation within seconds ..",
                 buttons = [
                     MDFlatButton(
-                        text = "CANCEL",on_release = self.close_dialog
+                        text = "CANCEL",on_release = self.close_dialog 
                     ),
                     MDRectangleFlatButton(
-                        text = "َ Approval",on_release =self.change_screen
+                        text = "َ Approval",
+                        on_release = self.checkspinner 
                     )
-                ]
+                ]             
             )
         self.dialog.open()
+   
 
     def close_dialog(self,obj):
         self.dialog.dismiss()
+    def closespiiner(self,obj):
+        self.root.ids.sppp.active = False
+        self.show_alert_dialog()
+    def checkspinner(self,obj):
+        self.dialog.dismiss()
+        self.root.ids.sppp.active = True
+        Clock.schedule_once(self.closespiiner,5)
+
+
     def change_screen(self,obj):
         self.root.current = "screen3"
         self.root.transition.direction = "left"
@@ -196,6 +280,25 @@ class testAPP(MDApp):
                 )
     def lancdeconvert(self):
         Service_VideoToImages.ddeconvert()
+
+    def saveFileType(self):
+        filepaths = ["/folder/soundfile.mp4"]
+        for fp in filepaths:
+            # Split the extension from the path and normalise it to lowercase.
+            ext = os.path.splitext(fp)[-1].lower()
+
+            # Now we can simply use == to check for equality, no need for wildcards.
+            if ext == ".mp3":
+                print(fp, "is an mp3!")
+            elif ext == ".flac":
+                print(fp, "is a flac file!")
+            else:
+                print(fp, "is an unknown file format.")
+    def checkFileType(self):
+        self.open_file_manager()
+        
+    
+
     
 
 

@@ -16,136 +16,301 @@
                     id: progress_bar
                     orientation:"horizontal"
                     value: 0
+        
     Screen:
+        name : "screen1"
         MDNavigationLayout:
             ScreenManager:
                 Screen:
-                    BoxLayout:
-                        orientation: 'vertical'
+                    MDBoxLayout:
+                        orientation:'vertical'
                         MDToolbar:
-                            title: "Navigation Drawer"
-                            elevation: 10
-                            left_action_items: [['menu', lambda x: nav_drawer.set_state("open")]]
+                            id: toolbar
+                            title:"All Services Adaptation"
+                            left_action_items:[["menu",lambda x: nav_drawer.set_state("open")]]
+                            right_action_items:[["magnify",lambda x:None]]
+                        MDBottomNavigation:
+                            panel_color:.23,.15,.31,1
+                            MDBottomNavigationItem:
+                                name:"home screen"
+                                text:"Home"
+                                icon:'home'
+                                MDScreen:
+                                    name:'home'
+                                    md_bg_color:56/255,40/255,81/255,1
+                                    MDFloatLayout:
+                                        Button:
+                                            text: "Load File"
+                                            size_hint:.66,.065
+                                            background_color:0, 0, 0, 0
+                                            font_name:"BPoppins"
+                                            pos_hint:{'center_x':.5 ,'center_y':.5 }
+                                            color: rgba(255,255,255,255)
+                                            on_release: app.checkFileType()
+                                            canvas.before:
+                                                Color:
+                                                    rgb :rgba(255,255,255,255)
+                                                Line:
+                                                    width: 1.2
+                                                    rounded_rectangle: self.x, self.y, self.width, self.height, 5, 5, 5, 5, 100
+                                    
+                                    MDSpinner:
+                                        id:sppp
+                                        size_hint: None, None
+                                        size: dp(46), dp(46)
+                                        pos_hint: {'center_x': .5, 'center_y': .2}
+                                        active: False 
+                                        color: rgba(255,255,255,255)
 
-                        
+    
 
 
+
+
+
+                
+                            MDBottomNavigationItem:
+                                name:"home simulation"
+                                text:"Simulation"
+                                icon:'movie-star'
+                                MDScreen:
+                                    name:'simulation'
+                                    md_bg_color:56/255,40/255,81/255,1
+                            MDBottomNavigationItem:
+                                name:"Data User"
+                                text:"Data User"
+                                icon:'data-matrix-scan'
+                                MDScreen:
+                                    name:'data user'
+                                    md_bg_color:56/255,40/255,81/255,1
+                            MDBottomNavigationItem:
+                                name:"Data Middle"
+                                text:"Data Middle"
+                                icon:'database-marker'
+                                MDScreen:
+                                    name:'data middle'
+                                    md_bg_color:56/255,40/255,81/255,1
+                                
+           
             MDNavigationDrawer:
                 id: nav_drawer
+                md_bg_color:56/255,40/255,81/255,1
+                ContentNavigationDrawer:
+                    orientation: "vertical"
+                    padding: "8dp"
+                    spacing: "8dp"
+                    AnchorLayout:
+                        anchor_x: "left"
+                        size_hint_y: None
+                        height: avatar.height
 
+                        Image:
+                            id: avatar
+                            size_hint: None, None
+                            size: "56dp", "56dp"
+                            source: "Images/me.jpg"
+                
+                    MDLabel:
+                        text: "Belakhdar Oussama"
+                        font_style: "Button"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+
+                    MDLabel:
+                        text: "belakhdaroussama1551@gmail.com"
+                        font_style: "Caption"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                    ScrollView:
+                        DrawerList:
+                            id: md_list
+                            MDList:
+                                OneLineIconListItem:
+                                    text: "Profile"
+                                    on_press:
+                                        root.ids.nav_drawer.set_state("close")
+                                        root.current = "screen2"
+                                    IconLeftWidget:
+                                        icon: "account"
+                                OneLineIconListItem:
+                                    text: "Files"
+                                    on_press:
+                                        root.ids.nav_drawer.set_state("close")
+                                        root.current = "screen2"
+                                    IconLeftWidget:
+                                        icon: "file"
+                                
+                                OneLineIconListItem:
+                                    text: "Blockchain History"
+                                    on_press:
+                                        root.ids.nav_drawer.set_state("close")
+                                        root.current = "screen2"
+                                    IconLeftWidget:
+                                        icon: "link-lock"
+                                OneLineIconListItem:
+                                    text: "Services"
+                                    on_press:
+                                        root.ids.nav_drawer.set_state("close")
+                                        root.current = "screen2"
+                                    IconLeftWidget:
+                                        icon: "hammer-wrench"
+                                OneLineIconListItem:
+                                    text: "Contracts Services"
+                                    on_press:
+                                        root.ids.nav_drawer.set_state("close")
+                                        root.current = "screen2"
+                                    IconLeftWidget:
+                                        icon: "file-document-edit"
+                                OneLineIconListItem:
+                                    text: "Middle Data - Arduino"
+                                    on_press:
+                                        root.ids.nav_drawer.set_state("close")
+                                        root.current = "screen_receive_data"
+                                    IconLeftWidget:
+                                        icon: "format-align-middle"
+                                OneLineIconListItem:
+                                    text: "Share"
+                                    on_press:
+                                        root.ids.nav_drawer.set_state("close")
+                                        root.current = "screen_share"
+                                    IconLeftWidget:
+                                        icon: "share-variant"
+                                OneLineIconListItem:
+                                    text: "Position"
+                                    on_press:
+                                        root.ids.nav_drawer.set_state("close")
+                                        root.current = "screen2"
+                                    IconLeftWidget:
+                                        icon: "map-marker"
+                                OneLineIconListItem:
+                                    text: "Settings"
+                                    on_press:
+                                        root.ids.nav_drawer.set_state("close")
+                                        root.current = "screen2"
+                                    IconLeftWidget:
+                                        icon: "cogs"
+                                OneLineIconListItem:
+                                    text: "Logout"
+                                    on_press:
+                                        root.ids.nav_drawer.set_state("close")
+                                        root.current = "screen2"
+                                    IconLeftWidget:
+                                        icon: "logout"
     Screen:
-        name : "screen1"
+        name:"screen_share"              
         MDBoxLayout:
             orientation:'vertical'
+            md_bg_color:56/255,40/255,81/255,1
             MDToolbar:
-                id: toolbar
-                title:"All Services Adaptation"
-                left_action_items:[["menu",lambda x:None]]
-                right_action_items:[["magnify",lambda x:None]]
-            MDBottomNavigation:
-                panel_color:.23,.15,.31,1
-                MDBottomNavigationItem:
-                    name:"storage screen"
-                    text:"Services"
-                    icon:'hammer-wrench'
-                    MDScreen:
-                        name:'home'
-                        md_bg_color:56/255,40/255,81/255,1
-                        ScrollView:
-                            MDGridLayout:
-                                size_hint_y:2.3
-                                cols:1
-                                padding:[dp(15),dp(15),dp(15),dp(15)]
-                                spacing:dp(15)
-                                ElementCard:
-                                    image:"images/blockl.png"
-                                    text:"My System Blockchain"
-                                    subtext:""
-                                    items_count:""
-                                    on_press:root.current = "screen2"
-                                ElementCard:
-                                    image:"images/calendar.png"
-                                    text:"Text to Speech"
-                                    subtext:""
-                                    items_count:""
-                                    on_press:root.current = "screen2"
-                                ElementCard:
-                                    image:"images/speech.png"
-                                    text:"Speech To Text"
-                                    subtext:""
-                                    items_count:""
-                                    on_press:root.current = "screen3"
-                                ElementCard:
-                                    image:"images/vdim.png"
-                                    text:"Video To Images"
-                                    subtext:""
-                                    items_count:""
-                                    on_press:root.current = "screen4"
-                                ElementCard:
-                                    image:"images/12.png"
-                                    text:"Images To Video"
-                                    subtext:""
-                                    items_count:""
-                                    on_press:root.current = "screen5"
-                                ElementCard:
-                                    image:"images/trans.png"
-                                    text:"Translate"
-                                    subtext:""
-                                    items_count:""
-                                ElementCard:
-                                    image:"images/map.png"
-                                    text:"My Position"
-                                    subtext:""
-                                    items_count:""
-                                ElementCard:
-                                    image:"images/setting.png"
-                                    text:"Setting"
-                                    subtext:""
-                                    items_count:""
-
-                MDBottomNavigationItem:
-                    name:"browse screen"
-                    text:"middle terms"
-                    icon:'format-align-middle'
-                    MDScreen:
-                        md_bg_color:56/255,40/255,81/255,1
-                        MDBoxLayout:
-                            pos_hint:{'center_x':.5,'center_y':.5}
-                            orientation:'vertical'
-                            size_hint_y:.95
-                            size_hint_x:.5
-                            spacing:'40dp'
-                            ScrollView:
-                                MDList:
-                                    id: container
-                                    size_hint_x:1.5
-                            MDFillRoundFlatButton:
-                                text:'RECEIVE DATA FROM ARDUINO '
-                                pos_hint:{'center_x':.5 ,'center_y':.5}
-                                on_press: app.receivefromarduino()
-                MDBottomNavigationItem:
-                    name:"share screen"
-                    text:"Share"
-                    icon:'share-variant'
-                    MDScreen:
-                        md_bg_color:56/255,40/255,81/255,1
-                        MDBoxLayout:
-                            pos_hint:{'center_x':.5,'center_y':.5}
-                            orientation:'vertical'
-                            size_hint_y:.4
-                            size_hint_x:.4
-                            spacing:'40dp'
-                            Image:
-                                source:'images/file-transfer.png'
-                            MDBoxLayout:
-                                pos_hint:{'center_x':.5,'center_y':.5}
-                                adaptive_size:True
-                                spacing:'20dp'
-                                MDFillRoundFlatButton:
-                                    text:' SEND  '
-                                MDFillRoundFlatButton:
-                                    text:'RECEIVE'
-
+                title:"Services"
+                left_action_items:[["arrow-left",lambda *args : setattr(mn_screen, "current", "screen1")]]
+                right_action_items: [["dots-vertical", lambda x: app.callback()]]
+            MDScreen:
+                md_bg_color:56/255,40/255,81/255,1
+                MDBoxLayout:
+                    pos_hint:{'center_x':.5,'center_y':.5}
+                    orientation:'vertical'
+                    size_hint_y:.4
+                    size_hint_x:.4
+                    spacing:'40dp'
+                    Image:
+                        source:'images/file-transfer.png'
+                    MDBoxLayout:
+                        pos_hint:{'center_x':.5,'center_y':.5}
+                        adaptive_size:True
+                        spacing:'20dp'
+                        MDFillRoundFlatButton:
+                            text:' SEND  '
+                        MDFillRoundFlatButton:
+                            text:'RECEIVE'
+    Screen:
+        name:"screen_receive_data"              
+        MDBoxLayout:
+            orientation:'vertical'
+            md_bg_color:56/255,40/255,81/255,1
+            MDToolbar:
+                title:"Services"
+                left_action_items:[["arrow-left",lambda *args : setattr(mn_screen, "current", "screen1")]]
+                right_action_items: [["dots-vertical", lambda x: app.callback()]]           
+            MDScreen:
+                md_bg_color:56/255,40/255,81/255,1
+                MDBoxLayout:
+                    pos_hint:{'center_x':.5,'center_y':.5}
+                    orientation:'vertical'
+                    size_hint_y:.95
+                    size_hint_x:.5
+                    spacing:'40dp'
+                    ScrollView:
+                        MDList:
+                            id: container
+                            size_hint_x:1.5
+                    MDFillRoundFlatButton:
+                        text:'RECEIVE DATA FROM ARDUINO '
+                        pos_hint:{'center_x':.5 ,'center_y':.5}
+                        on_press: app.receivefromarduino()                     
+    Screen:
+        name:"screen services "              
+        MDBoxLayout:
+            orientation:'vertical'
+            md_bg_color:56/255,40/255,81/255,1
+            MDToolbar:
+                title:"Services"
+                left_action_items:[["arrow-left",lambda *args : setattr(mn_screen, "current", "screen1")]]
+                right_action_items: [["dots-vertical", lambda x: app.callback()]]     
+            MDScreen:
+                name:'services'
+                md_bg_color:56/255,40/255,81/255,1
+                ScrollView:
+                    MDGridLayout:
+                        size_hint_y:2.3
+                        cols:1
+                        padding:[dp(15),dp(15),dp(15),dp(15)]
+                        spacing:dp(15)
+                        ElementCard:
+                            image:"images/blockl.png"
+                            text:"My System Blockchain"
+                            subtext:""
+                            items_count:""
+                            on_press:root.current = "screen2"
+                        ElementCard:
+                            image:"images/calendar.png"
+                            text:"Text to Speech"
+                            subtext:""
+                            items_count:""
+                            on_press:root.current = "screen2"
+                        ElementCard:
+                            image:"images/speech.png"
+                            text:"Speech To Text"
+                            subtext:""
+                            items_count:""
+                            on_press:root.current = "screen3"
+                        ElementCard:
+                            image:"images/vdim.png"
+                            text:"Video To Images"
+                            subtext:""
+                            items_count:""
+                            on_press:root.current = "screen4"
+                        ElementCard:
+                            image:"images/12.png"
+                            text:"Images To Video"
+                            subtext:""
+                            items_count:""
+                            on_press:root.current = "screen5"
+                        ElementCard:
+                            image:"images/trans.png"
+                            text:"Translate"
+                            subtext:""
+                            items_count:""
+                        ElementCard:
+                            image:"images/map.png"
+                            text:"My Position"
+                            subtext:""
+                            items_count:""
+                        ElementCard:
+                            image:"images/setting.png"
+                            text:"Setting"
+                            subtext:""
+                            items_count:""       
     Screen:
         name : "screen2"
         MDBoxLayout:
