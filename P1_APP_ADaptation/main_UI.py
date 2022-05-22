@@ -326,27 +326,36 @@ class testAPP(MDApp):
 
         self.snackbar.open()
         
-    def send_data_to_firebase(self,email,password):
+    def send_data_to_firebase(self,email,password,name,secondname,datebirth,adresse,number):
         from firebase import firebase
-
-
-
 
         firebase = firebase.FirebaseApplication(
             'https://masterapptestadaptation-default-rtdb.firebaseio.com/',None)
 
-
-
         data = {
             'Email': email,
             'Password' :password,
-            'Name' : 'Ammir',
-            'Second_name' : 'belk',
-            'Birthday date':'2003-08-30',
-            
+            'Name' : name,
+            'Second_name' : secondname,
+            'Birthday Date':datebirth,
+            'Adresse':adresse,
+            'Phone Number':number
         }
 
         firebase.post('https://masterapptestadaptation-default-rtdb.firebaseio.com/Users',data)
+    
+    def verify_data_login(self,email,password):
+        print("zzzzzzzzzzzzz")
+        from firebase import firebase
+
+        firebase = firebase.FirebaseApplication('https://masterapptestadaptation-default-rtdb.firebaseio.com/',None)
+        result = firebase.get('https://masterapptestadaptation-default-rtdb.firebaseio.com/Users','')
+
+        for i in result:
+            if result[i]['Email'] == email:
+                if result[i]['Password'] == password:
+                    print(email+"Logges In ! ")
+                else : print("Pass incorrect")
 
 
     

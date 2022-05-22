@@ -11,12 +11,11 @@ firebase = firebase.FirebaseApplication(
 data = {
     'Email': 'miroubelk@gmail.com',
     'Password' :'adapt2022',
-    'Name' : 'Ammir',
-    'Second_name' : 'Belakhdar'
+    
 }
 
 firebase.post(
     'https://masterapptestadaptation-default-rtdb.firebaseio.com/Users',data)
 
-# result = firebase.get('https://masterapptestadaptation-default-rtdb.firebaseio.com/Users','')
-# print(result)
+result = firebase.get('https://masterapptestadaptation-default-rtdb.firebaseio.com/Users','')
+print(result)
