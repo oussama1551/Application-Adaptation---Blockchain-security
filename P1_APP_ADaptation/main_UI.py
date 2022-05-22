@@ -1,3 +1,4 @@
+import email
 from importlib.resources import path
 from logging import root
 from select import select
@@ -26,6 +27,7 @@ from kivy.core.text import LabelBase
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.list import MDList
 from kivymd.uix.progressbar import MDProgressBar
+from kivymd.uix.snackbar import Snackbar
 
 
 
@@ -55,12 +57,14 @@ class DrawerList(ThemableBehavior, MDList):
 
 
 
-
-
-
-
-
 class testAPP(MDApp):
+
+
+
+
+
+
+
     dialog = None
     i = 0
     def __init__(self, **kwargs):
@@ -297,7 +301,53 @@ class testAPP(MDApp):
     def checkFileType(self):
         self.open_file_manager()
         
-    
+
+    def snackbar_show(self):
+        self.snackbar = Snackbar(
+            text="This is a snackbar!",
+            snackbar_x="10dp",
+            snackbar_y="60dp",
+        )
+        self.snackbar.size_hint_x = (
+            Window.width - (self.snackbar.snackbar_x * 2)
+        ) / Window.width
+        self.snackbar.buttons = [
+            MDFlatButton(
+                text="UPDATE",
+                text_color=(1, 1, 1, 1),
+                on_release= self.snackbar.dismiss,
+            ),
+            MDFlatButton(
+                text="CANCEL",
+                text_color=(1, 1, 1, 1),
+                on_release=self.snackbar.dismiss,
+            ),
+        ]
+
+        self.snackbar.open()
+        
+    def send_data_to_firebase(self,email,password):
+        from firebase import firebase
+
+
+
+
+        firebase = firebase.FirebaseApplication(
+            'https://masterapptestadaptation-default-rtdb.firebaseio.com/',None)
+
+
+
+        data = {
+            'Email': email,
+            'Password' :password,
+            'Name' : 'Ammir',
+            'Second_name' : 'belk',
+            'Birthday date':'2003-08-30',
+            
+        }
+
+        firebase.post('https://masterapptestadaptation-default-rtdb.firebaseio.com/Users',data)
+
 
     
 

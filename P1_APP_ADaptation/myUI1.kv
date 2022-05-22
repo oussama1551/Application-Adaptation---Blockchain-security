@@ -1,3 +1,5 @@
+#:import Snackbar kivymd.uix.snackbar.Snackbar
+#:import MDFlatButton kivymd.uix.button.MDFlatButton
 <MenuScreen>:
     id : mn_screen
     Screen:
@@ -76,6 +78,21 @@
                                 MDScreen:
                                     name:'simulation'
                                     md_bg_color:56/255,40/255,81/255,1
+                                    MDFloatLayout:
+                                        Button:
+                                            text: "  Sc 01  "
+                                            size_hint:.66,.065
+                                            background_color:0, 0, 0, 0
+                                            font_name:"BPoppins"
+                                            pos_hint:{'center_x':.5 ,'center_y':.5 }
+                                            color: rgba(255,255,255,255)
+                                            on_release:app.snackbar_show()
+                                            canvas.before:
+                                                Color:
+                                                    rgb :rgba(255,255,255,255)
+                                                Line:
+                                                    width: 1.2
+                                                    rounded_rectangle: self.x, self.y, self.width, self.height, 5, 5, 5, 5, 100
                             MDBottomNavigationItem:
                                 name:"Data User"
                                 text:"Data User"
@@ -528,6 +545,7 @@
                     size_hint: .7,.07
                     pos_hint:{'center_x':.5 ,'center_y':.67 }   
                     TextInput:
+                        id:email
                         hint_text:"Email"
                         font_name:"MPoppins"
                         size_hint_y:.75
@@ -546,6 +564,7 @@
                     size_hint: .7,.07
                     pos_hint:{'center_x':.5 ,'center_y':.57 }   
                     TextInput:
+                        id:password
                         hint_text:"Password"
                         font_name:"MPoppins"
                         size_hint_y:.75
@@ -567,7 +586,7 @@
                     background_color:0, 0, 0, 0
                     font_name:"BPoppins"
                     pos_hint:{'center_x':.5 ,'center_y':.40 }
-                    on_release: root.current = "screen1"
+                    on_release: app.send_data_to_firebase(email.text,password.text)
                     canvas.before:
                         Color:
                             rgb :rgba(56,40,81,255)
