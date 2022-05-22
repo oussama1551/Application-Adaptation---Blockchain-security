@@ -148,7 +148,9 @@ class testAPP(MDApp):
         Clock.schedule_interval(self.startprogress_bar,0)
         
     def login(self,*args):
-        self.root.current = "screenlogin"
+        #self.root.current = "screenlogin"
+        self.root.current = "screen1"
+
     
     def receivefromarduino(self):
         print("test ")
@@ -204,7 +206,7 @@ class testAPP(MDApp):
         self.dialog.dismiss()
         self.root.ids.sppp.active = True
         Clock.schedule_once(self.closespiiner,5)
-
+    
 
     def change_screen(self,obj):
         self.root.current = "screen3"
@@ -345,17 +347,29 @@ class testAPP(MDApp):
         firebase.post('https://masterapptestadaptation-default-rtdb.firebaseio.com/Users',data)
     
     def verify_data_login(self,email,password):
-        print("zzzzzzzzzzzzz")
+        print("check login")
         from firebase import firebase
 
         firebase = firebase.FirebaseApplication('https://masterapptestadaptation-default-rtdb.firebaseio.com/',None)
         result = firebase.get('https://masterapptestadaptation-default-rtdb.firebaseio.com/Users','')
 
-        for i in result:
+        for i in result.keys():
             if result[i]['Email'] == email:
                 if result[i]['Password'] == password:
                     print(email+"Logges In ! ")
-                else : print("Pass incorrect")
+                    self.root.current = "screen1"
+                    self.root.ids.labelemailprofile.text = result[i]['Email'] 
+                    self.root.ids.labelnameprofile.text = result[i]['Name'] + "  "+result[i]['Second_name']
+                else :print("paswword incorrect")
+            else : print("Email incorrecte")    
+
+
+    def launchcheck(self,obj):
+        self.verify_data_login(self.root.ids.email_log.text,self.root.ids.password_log.text)
+
+    def loginactionspinner(self):
+        self.root.ids.splogin.active = True
+        Clock.schedule_once(self.launchcheck,3)
 
 
     

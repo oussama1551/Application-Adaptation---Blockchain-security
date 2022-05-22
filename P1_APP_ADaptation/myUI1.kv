@@ -100,6 +100,16 @@
                                 MDScreen:
                                     name:'data user'
                                     md_bg_color:56/255,40/255,81/255,1
+                                    ScrollView:
+                                        TwoLineAvatarIconListItem:
+                                            text: "Two-line item with avatar"
+                                            secondary_text: "Secondary text here"
+
+                                            IconLeftWidget:
+                                                icon: "language-python"
+                                            IconRightWidget:
+                                                icon: "chevron-right"
+                                            
                             MDBottomNavigationItem:
                                 name:"Data Middle"
                                 text:"Data Middle"
@@ -107,6 +117,7 @@
                                 MDScreen:
                                     name:'data middle'
                                     md_bg_color:56/255,40/255,81/255,1
+                                    
                                 
            
             MDNavigationDrawer:
@@ -128,12 +139,14 @@
                             source: "Images/me.jpg"
                 
                     MDLabel:
+                        id :labelnameprofile
                         text: "Belakhdar Oussama"
                         font_style: "Button"
                         size_hint_y: None
                         height: self.texture_size[1]
 
                     MDLabel:
+                        id :labelemailprofile
                         text: "belakhdaroussama1551@gmail.com"
                         font_style: "Caption"
                         size_hint_y: None
@@ -586,8 +599,10 @@
                     size_hint:.66,.065
                     background_color:0, 0, 0, 0
                     font_name:"BPoppins"
-                    pos_hint:{'center_x':.5 ,'center_y':.40 }
-                    on_release: app.verify_data_login(email_log.text,password_log.text)
+                    pos_hint:{'center_x':.5 ,'center_y':.45 }
+                    on_release:
+                        app.loginactionspinner()
+                        #app.verify_data_login(email_log.text,password_log.text)
                     canvas.before:
                         Color:
                             rgb :rgba(56,40,81,255)
@@ -597,29 +612,36 @@
                             radius:[5]
                 MDTextButton:
                     text:"Forgot Password ?"
-                    pos_hint:{'center_x':.5 ,'center_y':.38}
+                    pos_hint:{'center_x':.5 ,'center_y':.40}
                     color:rgba(56,40,81,255)
                     font_size:"12sp"
                     font_name:"BPoppins"
+                MDSpinner:
+                    id:splogin
+                    size_hint: None, None
+                    size: dp(46), dp(46)
+                    pos_hint: {'center_x': .5, 'center_y': .33}
+                    active: False 
+                    color: rgba(56,40,81,255)
                 MDLabel:
                     text: "or"
                     color:rgba(56,40,81,255)
-                    pos_hint:{'center_y':.32}
+                    pos_hint:{'center_y':.26}
                     font_size:"13sp"
                     font_name:"BPoppins"
                     halign:"center"
                 MDFloatLayout:
-                    pos_hint:{'center_x':.3 ,'center_y':.315 }
+                    pos_hint:{'center_x':.3 ,'center_y':.255 }
                     size_hint:.3,.002
                     md_bg_color:rgba(56,40,81,255)    
                 MDFloatLayout:
-                    pos_hint:{'center_x':.7 ,'center_y':.315 }
+                    pos_hint:{'center_x':.7 ,'center_y':.255 }
                     size_hint:.3,.002
                     md_bg_color:rgba(56,40,81,255)    
                 MDLabel:
                     text: "Sociel Media Login"
                     color:rgba(56,40,81,255)
-                    pos_hint:{'center_y':.25}
+                    pos_hint:{'center_y':.20}
                     font_size:"13sp"
                     font_name:"BPoppins"
                     halign:"center"
@@ -627,7 +649,7 @@
                     md_bg_color:1, 1, 1, 1
                     cols:2
                     size_hint:.25,.07
-                    pos_hint:{'center_x':.5 ,'center_y':.17 }
+                    pos_hint:{'center_x':.5 ,'center_y':.12 }
                     Image:
                         source:"Images/gggggggg.png"
                     Image:
@@ -635,12 +657,12 @@
                 MDLabel:
                     text: "Don't have an account ?"
                     color:rgba(56,40,81,255)
-                    pos_hint:{'center_x':.72 ,'center_y':.09 }
+                    pos_hint:{'center_x':.72 ,'center_y':.04 }
                     font_size:"11sp"
                     font_name:"BPoppins"
                 MDTextButton:
                     text:"Sign up"
-                    pos_hint:{'center_x':.72,'center_y':.091}
+                    pos_hint:{'center_x':.72,'center_y':.041}
                     color:rgba(56,40,81,255)
                     font_size:"12sp"
                     font_name:"BPoppins"
@@ -670,7 +692,7 @@
                     color: rgba(56,40,81,255)
                 MDFloatLayout:
                     size_hint: .7,.07
-                    pos_hint:{'center_x':.5 ,'center_y':.80 }   
+                    pos_hint:{'center_x':.5 ,'center_y':.82 }   
                     TextInput:
                         id:email
                         hint_text:"Email"
@@ -689,7 +711,7 @@
                         md_bg_color:rgba(56,40,81,255)
                 MDFloatLayout:
                     size_hint: .7,.07
-                    pos_hint:{'center_x':.5 ,'center_y':.72 }   
+                    pos_hint:{'center_x':.5 ,'center_y':.74 }   
                     TextInput:
                         id:password
                         hint_text:"Password"
