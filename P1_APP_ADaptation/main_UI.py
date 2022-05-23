@@ -28,6 +28,10 @@ from kivymd.theming import ThemableBehavior
 from kivymd.uix.list import MDList
 from kivymd.uix.progressbar import MDProgressBar
 from kivymd.uix.snackbar import Snackbar
+from kivy.properties import StringProperty
+from kivymd.icon_definitions import md_icons
+from kivymd.uix.list import OneLineListItem
+from kivymd.uix.list import TwoLineAvatarIconListItem
 
 
 
@@ -75,6 +79,9 @@ class testAPP(MDApp):
             #preview=True,
             #show_hidden_files=True
         )
+
+
+    
     def selectFunction(self,path):
         if self.root.current == "screen3":
             print(path)
@@ -146,10 +153,17 @@ class testAPP(MDApp):
     def on_start(self):
         Clock.schedule_once(self.login, 5)
         Clock.schedule_interval(self.startprogress_bar,0)
+        self.datausershow()
         
     def login(self,*args):
         #self.root.current = "screenlogin"
         self.root.current = "screen1"
+    
+    def datausershow(self):
+        self.root.ids.listdatauser.add_widget(
+            TwoLineAvatarIconListItem(text="Sound Low")
+
+        )
 
     
     def receivefromarduino(self):

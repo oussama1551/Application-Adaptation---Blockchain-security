@@ -1,5 +1,7 @@
 #:import Snackbar kivymd.uix.snackbar.Snackbar
 #:import MDFlatButton kivymd.uix.button.MDFlatButton
+
+
 <MenuScreen>:
     id : mn_screen
     Screen:
@@ -98,18 +100,61 @@
                                 text:"Data User"
                                 icon:'data-matrix-scan'
                                 MDScreen:
-                                    name:'data user'
+                                    name:'datauser'
                                     md_bg_color:56/255,40/255,81/255,1
                                     ScrollView:
-                                        TwoLineAvatarIconListItem:
-                                            text: "Two-line item with avatar"
-                                            secondary_text: "Secondary text here"
-
-                                            IconLeftWidget:
-                                                icon: "language-python"
-                                            IconRightWidget:
-                                                icon: "chevron-right"
+                                        MDList:
+                                            id:listdatauser
+                                            # TwoLineAvatarIconListItem:
+                                            #     text: "Two-line item with avatar"
+                                            #     secondary_text: "Secondary text here"
+                                            #     IconLeftWidget:
+                                            #         icon: "language-python"
+                                            #     IconRightWidget:
+                                            #         icon: "chevron-right"
+                                            # TwoLineAvatarIconListItem:
+                                            #     text: "Two-line item with avatar"
+                                            #     secondary_text: "Secondary text here"
+                                            #     IconLeftWidget:
+                                            #         icon: "language-python"
+                                            #     IconRightWidget:
+                                            #         icon: "chevron-right"
+                                            # TwoLineAvatarIconListItem:
+                                            #     text: "Two-line item with avatar"
+                                            #     secondary_text: "Secondary text here"
+                                            #     IconLeftWidget:
+                                            #         icon: "language-python"
+                                            #     IconRightWidget:
+                                            #         icon: "chevron-right"
+                                            # TwoLineAvatarIconListItem:
+                                            #     text: "Two-line item with avatar"
+                                            #     secondary_text: "Secondary text here"
+                                            #     IconLeftWidget:
+                                            #         icon: "language-python"
+                                            #     IconRightWidget:
+                                            #         icon: "chevron-right"
+                                            # TwoLineAvatarIconListItem:
+                                            #     text: "Two-line item with avatar"
+                                            #     secondary_text: "Secondary text here"
+                                            #     IconLeftWidget:
+                                            #         icon: "Images/tr.png"
+                                            #     IconRightWidget:
+                                            #         icon: "Images/tr.png"
+                                            #         MDCheckbox:
+                                            #             selected_color :rgba(255,255,255,255)
+                                            #             pos_hint: {'center_x': .5, 'center_y': .5}
+                                                                                                       
+                                                                                        
                                             
+                                            
+
+
+
+
+
+
+
+
                             MDBottomNavigationItem:
                                 name:"Data Middle"
                                 text:"Data Middle"
@@ -118,8 +163,6 @@
                                     name:'data middle'
                                     md_bg_color:56/255,40/255,81/255,1
                                     
-                                
-           
             MDNavigationDrawer:
                 id: nav_drawer
                 md_bg_color:56/255,40/255,81/255,1
@@ -159,7 +202,7 @@
                                     text: "Profile"
                                     on_press:
                                         root.ids.nav_drawer.set_state("close")
-                                        root.current = "screen2"
+                                        app.datausershow()
                                     IconLeftWidget:
                                         icon: "account"
                                 OneLineIconListItem:
