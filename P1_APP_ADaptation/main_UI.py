@@ -2,6 +2,7 @@ import email
 from importlib.resources import path
 from logging import root
 from select import select
+from tkinter import dialog
 from tkinter.ttk import Label
 from unicodedata import name
 from kivymd.app import MDApp
@@ -32,7 +33,13 @@ from kivy.properties import StringProperty
 from kivymd.icon_definitions import md_icons
 from kivymd.uix.list import OneLineListItem
 from kivymd.uix.list import TwoLineAvatarIconListItem
+from kivymd.uix.list import IRightBodyTouch
+from kivymd.uix.boxlayout import MDBoxLayout
+from kivymd.uix.selectioncontrol import MDCheckbox
 
+
+class YourContainer(IRightBodyTouch, MDBoxLayout):
+    adaptive_width = True
 
 
 class Content(BoxLayout):
@@ -62,7 +69,13 @@ class DrawerList(ThemableBehavior, MDList):
 
 
 class testAPP(MDApp):
-
+    mail = None
+    passw =None
+    namee =None
+    secondN=None
+    date=None
+    adresse=None
+    phone=None
 
 
 
@@ -153,7 +166,8 @@ class testAPP(MDApp):
     def on_start(self):
         Clock.schedule_once(self.login, 5)
         Clock.schedule_interval(self.startprogress_bar,0)
-        self.datausershow()
+
+        
         
     def login(self,*args):
         #self.root.current = "screenlogin"
@@ -161,9 +175,29 @@ class testAPP(MDApp):
     
     def datausershow(self):
         self.root.ids.listdatauser.add_widget(
-            TwoLineAvatarIconListItem(text="Sound Low")
-
+            TwoLineAvatarIconListItem(text="Email",secondary_text=self.mail)
         )
+        self.root.ids.listdatauser.add_widget(
+            TwoLineAvatarIconListItem(text="Password",secondary_text=self.passw)
+        )
+        self.root.ids.listdatauser.add_widget(
+            TwoLineAvatarIconListItem(text="Name",secondary_text=self.namee),
+        )
+        self.root.ids.listdatauser.add_widget(
+            TwoLineAvatarIconListItem(text="Second_name",secondary_text=self.secondN),
+        )
+        self.root.ids.listdatauser.add_widget(
+            TwoLineAvatarIconListItem(text="Birthday Date",secondary_text=self.date),
+        )
+        self.root.ids.listdatauser.add_widget(
+            TwoLineAvatarIconListItem(text="Adresse",secondary_text=self.adresse),
+        )
+        self.root.ids.listdatauser.add_widget(
+            TwoLineAvatarIconListItem(text="Phone Number",secondary_text=self.phone),
+        )
+       
+
+
 
     
     def receivefromarduino(self):
@@ -373,7 +407,15 @@ class testAPP(MDApp):
                     print(email+"Logges In ! ")
                     self.root.current = "screen1"
                     self.root.ids.labelemailprofile.text = result[i]['Email'] 
+                    self.mail=result[i]['Email']
+                    self.passw=result[i]['Password']
+                    self.namee=result[i]['Name']
+                    self.secondN=result[i]['Second_name']
+                    self.adresse=result[i]['Adresse']
+                    self.date=result[i]['Birthday Date']
+                    self.phone=result[i]['Phone Number']
                     self.root.ids.labelnameprofile.text = result[i]['Name'] + "  "+result[i]['Second_name']
+                    #self.datausershow()
                 else :print("paswword incorrect")
             else : print("Email incorrecte")    
 

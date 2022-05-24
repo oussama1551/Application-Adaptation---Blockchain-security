@@ -82,7 +82,21 @@
                                     md_bg_color:56/255,40/255,81/255,1
                                     MDFloatLayout:
                                         Button:
-                                            text: "  Sc 01  "
+                                            text: "  Sc 03  "
+                                            size_hint:.66,.065
+                                            background_color:0, 0, 0, 0
+                                            font_name:"BPoppins"
+                                            pos_hint:{'center_x':.5 ,'center_y':.3 }
+                                            color: rgba(255,255,255,255)
+                                            on_release:app.snackbar_show()
+                                            canvas.before:
+                                                Color:
+                                                    rgb :rgba(255,255,255,255)
+                                                Line:
+                                                    width: 1.2
+                                                    rounded_rectangle: self.x, self.y, self.width, self.height, 5, 5, 5, 5, 100
+                                        Button:
+                                            text: "  Sc 02  "
                                             size_hint:.66,.065
                                             background_color:0, 0, 0, 0
                                             font_name:"BPoppins"
@@ -95,66 +109,21 @@
                                                 Line:
                                                     width: 1.2
                                                     rounded_rectangle: self.x, self.y, self.width, self.height, 5, 5, 5, 5, 100
-                            MDBottomNavigationItem:
-                                name:"Data User"
-                                text:"Data User"
-                                icon:'data-matrix-scan'
-                                MDScreen:
-                                    name:'datauser'
-                                    md_bg_color:56/255,40/255,81/255,1
-                                    ScrollView:
-                                        MDList:
-                                            id:listdatauser
-                                            # TwoLineAvatarIconListItem:
-                                            #     text: "Two-line item with avatar"
-                                            #     secondary_text: "Secondary text here"
-                                            #     IconLeftWidget:
-                                            #         icon: "language-python"
-                                            #     IconRightWidget:
-                                            #         icon: "chevron-right"
-                                            # TwoLineAvatarIconListItem:
-                                            #     text: "Two-line item with avatar"
-                                            #     secondary_text: "Secondary text here"
-                                            #     IconLeftWidget:
-                                            #         icon: "language-python"
-                                            #     IconRightWidget:
-                                            #         icon: "chevron-right"
-                                            # TwoLineAvatarIconListItem:
-                                            #     text: "Two-line item with avatar"
-                                            #     secondary_text: "Secondary text here"
-                                            #     IconLeftWidget:
-                                            #         icon: "language-python"
-                                            #     IconRightWidget:
-                                            #         icon: "chevron-right"
-                                            # TwoLineAvatarIconListItem:
-                                            #     text: "Two-line item with avatar"
-                                            #     secondary_text: "Secondary text here"
-                                            #     IconLeftWidget:
-                                            #         icon: "language-python"
-                                            #     IconRightWidget:
-                                            #         icon: "chevron-right"
-                                            # TwoLineAvatarIconListItem:
-                                            #     text: "Two-line item with avatar"
-                                            #     secondary_text: "Secondary text here"
-                                            #     IconLeftWidget:
-                                            #         icon: "Images/tr.png"
-                                            #     IconRightWidget:
-                                            #         icon: "Images/tr.png"
-                                            #         MDCheckbox:
-                                            #             selected_color :rgba(255,255,255,255)
-                                            #             pos_hint: {'center_x': .5, 'center_y': .5}
-                                                                                                       
-                                                                                        
+                                        Button:
+                                            text: "  Sc 01  "
+                                            size_hint:.66,.065
+                                            background_color:0, 0, 0, 0
+                                            font_name:"BPoppins"
+                                            pos_hint:{'center_x':.5 ,'center_y':.7 }
+                                            color: rgba(255,255,255,255)
+                                            on_release:app.snackbar_show()
+                                            canvas.before:
+                                                Color:
+                                                    rgb :rgba(255,255,255,255)
+                                                Line:
+                                                    width: 1.2
+                                                    rounded_rectangle: self.x, self.y, self.width, self.height, 5, 5, 5, 5, 100
                                             
-                                            
-
-
-
-
-
-
-
-
                             MDBottomNavigationItem:
                                 name:"Data Middle"
                                 text:"Data Middle"
@@ -162,6 +131,47 @@
                                 MDScreen:
                                     name:'data middle'
                                     md_bg_color:56/255,40/255,81/255,1
+                                    MDLabel:
+                                        text: "Quality File Adapted :"
+                                        font_name: 'MPoppins'
+                                        font_size: "16sp"
+                                        pos_hint:{'center_x':.52 ,'center_y':.96 }
+                                        color: rgba(255,255,255,255)
+                                    MDLabel:
+                                        text: "High :"
+                                        font_name: 'MPoppins'
+                                        font_size: "13sp"
+                                        pos_hint:{'center_x':.52 ,'center_y':.90 }
+                                        color: rgba(255,255,255,255)
+                                    MDCheckbox:
+                                        id:ch1
+                                        selected_color:rgba(255,255,255,255)
+                                        pos_hint:{'center_x':.2 ,'center_y':.90 }
+                                    MDLabel:
+                                        text: "Low :"
+                                        font_name: 'MPoppins'
+                                        font_size: "13sp"
+                                        pos_hint:{'center_x':.82 ,'center_y':.90 }
+                                        color: rgba(255,255,255,255)
+                                    MDCheckbox:
+                                        id:ch1
+                                        selected_color:rgba(255,255,255,255)
+                                        pos_hint:{'center_x':.5 ,'center_y':.90 }
+                                    MDLabel:
+                                        text: "Auto :"
+                                        font_name: 'MPoppins'
+                                        font_size: "13sp"
+                                        pos_hint:{'center_x':1.02 ,'center_y':.90 }
+                                        color: rgba(255,255,255,255)
+                                    MDCheckbox:
+                                        id:ch1
+                                        selected_color:rgba(255,255,255,255)
+                                        pos_hint:{'center_x':.7 ,'center_y':.90 }
+
+
+                                        
+
+                                    
                                     
             MDNavigationDrawer:
                 id: nav_drawer
@@ -202,7 +212,7 @@
                                     text: "Profile"
                                     on_press:
                                         root.ids.nav_drawer.set_state("close")
-                                        app.datausershow()
+                                        root.current ="userProfiledata"
                                     IconLeftWidget:
                                         icon: "account"
                                 OneLineIconListItem:
@@ -895,7 +905,20 @@
                     font_size:"12sp"
                     font_name:"BPoppins"
                     
-
+    Screen:
+        name:"userProfiledata"              
+        MDBoxLayout:
+            orientation:'vertical'
+            md_bg_color:56/255,40/255,81/255,1
+            MDToolbar:
+                title:"Account"
+                left_action_items:[["arrow-left",lambda *args : setattr(mn_screen, "current", "screen1")]]
+                right_action_items: [["dots-vertical", lambda x: app.callback()]]           
+            MDScreen:
+                md_bg_color:56/255,40/255,81/255,1
+                ScrollView:
+                    MDList:
+                        id:listdatauser
 
 
 
