@@ -125,50 +125,474 @@
                                                     rounded_rectangle: self.x, self.y, self.width, self.height, 5, 5, 5, 5, 100
                                             
                             MDBottomNavigationItem:
+                                name:"Data User"
+                                text:"Data User"
+                                icon:'text-account'
+                                MDScreen:
+                                    name:'data user'
+                                    md_bg_color:56/255,40/255,81/255,1
+                                    MDFloatLayout:
+                                        MDLabel:
+                                            text: "Quality File Adapted :"
+                                            font_name: 'MPoppins'
+                                            font_size: "15sp"
+                                            pos_hint:{'center_x':.52 ,'center_y':.96 }
+                                            color: rgba(255,255,255,255)
+                                        MDLabel:
+                                            text: "High :"
+                                            font_name: 'MPoppins'
+                                            font_size: "13sp"
+                                            pos_hint:{'center_x':.52 ,'center_y':.90 }
+                                            color: rgba(255,255,255,255)
+                                        MDCheckbox:
+                                            id:ch1
+                                            selected_color:rgba(255,255,255,255)
+                                            pos_hint:{'center_x':.2 ,'center_y':.90 }
+                                            size_hint: .1, .1
+                                        MDLabel:
+                                            text: "Low :"
+                                            font_name: 'MPoppins'
+                                            font_size: "13sp"
+                                            pos_hint:{'center_x':.85 ,'center_y':.90 }
+                                            color: rgba(255,255,255,255)
+                                        MDCheckbox:
+                                            id:ch1
+                                            selected_color:rgba(255,255,255,255)
+                                            pos_hint:{'center_x':.53 ,'center_y':.90 }
+                                            size_hint: .1, .1
+                                        MDLabel:
+                                            text: "Auto :"
+                                            font_name: 'MPoppins'
+                                            font_size: "13sp"
+                                            pos_hint:{'center_x':1.18 ,'center_y':.90 }
+                                            color: rgba(255,255,255,255)
+                                        MDCheckbox:
+                                            id:ch1
+                                            selected_color:rgba(255,255,255,255)
+                                            pos_hint:{'center_x':.88 ,'center_y':.90 }
+                                            size_hint: .1, .1
+                                            active: True
+                                        MDFloatLayout:
+                                            pos_hint:{'center_x':.5 ,'center_y':.85 }
+                                            size_hint:.92,.002
+                                            md_bg_color:rgba(255,255,255,255)
+                                    MDFloatLayout:
+                                        MDLabel:
+                                            text: "Inappropriate language :"
+                                            font_name: 'MPoppins'
+                                            font_size: "15sp"
+                                            pos_hint:{'center_x':.52 ,'center_y':.80 }
+                                            color: rgba(255,255,255,255)
+                                        MDLabel:
+                                            text: "Translate :"
+                                            font_name: 'MPoppins'
+                                            font_size: "13sp"
+                                            pos_hint:{'center_x':.52 ,'center_y':.74 }
+                                            color: rgba(255,255,255,255)
+                                        MDCheckbox:
+                                            id:ch1
+                                            selected_color:rgba(255,255,255,255)
+                                            pos_hint:{'center_x':.25 ,'center_y':.74 }
+                                            size_hint: .1, .1
+                                        MDLabel:
+                                            text: "Keep :"
+                                            font_name: 'MPoppins'
+                                            font_size: "13sp"
+                                            pos_hint:{'center_x':.85 ,'center_y':.74 }
+                                            color: rgba(255,255,255,255)
+                                        MDCheckbox:
+                                            id:ch1
+                                            selected_color:rgba(255,255,255,255)
+                                            pos_hint:{'center_x':.53 ,'center_y':.74 }
+                                            size_hint: .1, .1
+                                        MDLabel:
+                                            text: "Auto :"
+                                            font_name: 'MPoppins'
+                                            font_size: "13sp"
+                                            pos_hint:{'center_x':1.18 ,'center_y':.74 }
+                                            color: rgba(255,255,255,255)
+                                        MDCheckbox:
+                                            id:ch1
+                                            selected_color:rgba(255,255,255,255)
+                                            pos_hint:{'center_x':.88 ,'center_y':.74 }
+                                            size_hint: .1, .1
+                                            active: True
+                                        MDFloatLayout:
+                                            pos_hint:{'center_x':.5 ,'center_y':.69 }
+                                            size_hint:.92,.002
+                                            md_bg_color:rgba(255,255,255,255)
+                                    MDFloatLayout:
+                                        MDLabel:
+                                            text: "Busy agenda :"
+                                            font_name: 'MPoppins'
+                                            font_size: "15sp"
+                                            pos_hint:{'center_x':.52 ,'center_y':.64 }
+                                            color: rgba(255,255,255,255)
+                                        MDLabel:
+                                            text: "Summarize text :"
+                                            font_name: 'MPoppins'
+                                            font_size: "13sp"
+                                            pos_hint:{'center_x':.52 ,'center_y':.59 }
+                                            color: rgba(255,255,255,255)
+                                        MDCheckbox:
+                                            id:ch1
+                                            selected_color:rgba(255,255,255,255)
+                                            pos_hint:{'center_x':.4 ,'center_y':.59 }
+                                            size_hint: .1, .1
+                                        MDLabel:
+                                            text: "Auto :"
+                                            font_name: 'MPoppins'
+                                            font_size: "13sp"
+                                            pos_hint:{'center_x':1.18 ,'center_y':.59 }
+                                            color: rgba(255,255,255,255)
+                                        MDCheckbox:
+                                            id:ch1
+                                            selected_color:rgba(255,255,255,255)
+                                            pos_hint:{'center_x':.88 ,'center_y':.59 }
+                                            size_hint: .1, .1
+                                            active: True
+                                        MDFloatLayout:
+                                            pos_hint:{'center_x':.5 ,'center_y':.54 }
+                                            size_hint:.92,.002
+                                            md_bg_color:rgba(255,255,255,255)
+                                    MDFloatLayout:
+                                        MDLabel:
+                                            text: "Case of sight :"
+                                            font_name: 'MPoppins'
+                                            font_size: "15sp"
+                                            pos_hint:{'center_x':.52 ,'center_y':.49 }
+                                            color: rgba(255,255,255,255)
+                                        MDLabel:
+                                            text: "Not Good :"
+                                            font_name: 'MPoppins'
+                                            font_size: "13sp"
+                                            pos_hint:{'center_x':.52 ,'center_y':.44 }
+                                            color: rgba(255,255,255,255)
+                                        MDCheckbox:
+                                            id:ch1
+                                            selected_color:rgba(255,255,255,255)
+                                            pos_hint:{'center_x':.4 ,'center_y':.44 }
+                                            size_hint: .1, .1
+                                        MDLabel:
+                                            text: "Good :"
+                                            font_name: 'MPoppins'
+                                            font_size: "13sp"
+                                            pos_hint:{'center_x':1.18 ,'center_y':.44 }
+                                            color: rgba(255,255,255,255)
+                                        MDCheckbox:
+                                            id:ch1
+                                            selected_color:rgba(255,255,255,255)
+                                            pos_hint:{'center_x':.88 ,'center_y':.44 }
+                                            size_hint: .1, .1
+                                            active: True
+                                        MDFloatLayout:
+                                            pos_hint:{'center_x':.5 ,'center_y':.39 }
+                                            size_hint:.92,.002
+                                            md_bg_color:rgba(255,255,255,255)
+                                    MDFloatLayout:
+                                        MDLabel:
+                                            text: "Hearing condition :"
+                                            font_name: 'MPoppins'
+                                            font_size: "15sp"
+                                            pos_hint:{'center_x':.52 ,'center_y':.34 }
+                                            color: rgba(255,255,255,255)
+                                        MDLabel:
+                                            text: "Not Good :"
+                                            font_name: 'MPoppins'
+                                            font_size: "13sp"
+                                            pos_hint:{'center_x':.52 ,'center_y':.29 }
+                                            color: rgba(255,255,255,255)
+                                        MDCheckbox:
+                                            id:ch1
+                                            selected_color:rgba(255,255,255,255)
+                                            pos_hint:{'center_x':.4 ,'center_y':.29 }
+                                            size_hint: .1, .1
+                                        MDLabel:
+                                            text: "Good :"
+                                            font_name: 'MPoppins'
+                                            font_size: "13sp"
+                                            pos_hint:{'center_x':1.18 ,'center_y':.29 }
+                                            color: rgba(255,255,255,255)
+                                        MDCheckbox:
+                                            id:ch1
+                                            selected_color:rgba(255,255,255,255)
+                                            pos_hint:{'center_x':.88 ,'center_y':.29 }
+                                            size_hint: .1, .1
+                                            active: True
+                                        MDFloatLayout:
+                                            pos_hint:{'center_x':.5 ,'center_y':.24 }
+                                            size_hint:.92,.002
+                                            md_bg_color:rgba(255,255,255,255)
+                                    MDFloatLayout:
+                                        MDLabel:
+                                            text: "Position Autorisation  :"
+                                            font_name: 'MPoppins'
+                                            font_size: "15sp"
+                                            pos_hint:{'center_x':.52 ,'center_y':.19 }
+                                            color: rgba(255,255,255,255)
+                                        MDLabel:
+                                            text: "Deny :"
+                                            font_name: 'MPoppins'
+                                            font_size: "13sp"
+                                            pos_hint:{'center_x':.55 ,'center_y':.14 }
+                                            color: rgba(255,255,255,255)
+                                        MDCheckbox:
+                                            id:ch1
+                                            selected_color:rgba(255,255,255,255)
+                                            pos_hint:{'center_x':.4 ,'center_y':.14 }
+                                            size_hint: .1, .1
+                                        MDLabel:
+                                            text: "Allow :"
+                                            font_name: 'MPoppins'
+                                            font_size: "13sp"
+                                            pos_hint:{'center_x':1.18 ,'center_y':.14 }
+                                            color: rgba(255,255,255,255)
+                                        MDCheckbox:
+                                            id:ch1
+                                            selected_color:rgba(255,255,255,255)
+                                            pos_hint:{'center_x':.88 ,'center_y':.14 }
+                                            size_hint: .1, .1
+                                            active: True
+                                        MDFloatLayout:
+                                            pos_hint:{'center_x':.5 ,'center_y':.09 }
+                                            size_hint:.92,.002
+                                            md_bg_color:rgba(255,255,255,255)
+                            MDBottomNavigationItem:
                                 name:"Data Middle"
                                 text:"Data Middle"
                                 icon:'database-marker'
                                 MDScreen:
                                     name:'data middle'
                                     md_bg_color:56/255,40/255,81/255,1
-                                    MDLabel:
-                                        text: "Quality File Adapted :"
-                                        font_name: 'MPoppins'
-                                        font_size: "16sp"
-                                        pos_hint:{'center_x':.52 ,'center_y':.96 }
-                                        color: rgba(255,255,255,255)
-                                    MDLabel:
-                                        text: "High :"
-                                        font_name: 'MPoppins'
-                                        font_size: "13sp"
-                                        pos_hint:{'center_x':.52 ,'center_y':.90 }
-                                        color: rgba(255,255,255,255)
-                                    MDCheckbox:
-                                        id:ch1
-                                        selected_color:rgba(255,255,255,255)
-                                        pos_hint:{'center_x':.2 ,'center_y':.90 }
-                                    MDLabel:
-                                        text: "Low :"
-                                        font_name: 'MPoppins'
-                                        font_size: "13sp"
-                                        pos_hint:{'center_x':.82 ,'center_y':.90 }
-                                        color: rgba(255,255,255,255)
-                                    MDCheckbox:
-                                        id:ch1
-                                        selected_color:rgba(255,255,255,255)
-                                        pos_hint:{'center_x':.5 ,'center_y':.90 }
-                                    MDLabel:
-                                        text: "Auto :"
-                                        font_name: 'MPoppins'
-                                        font_size: "13sp"
-                                        pos_hint:{'center_x':1.02 ,'center_y':.90 }
-                                        color: rgba(255,255,255,255)
-                                    MDCheckbox:
-                                        id:ch1
-                                        selected_color:rgba(255,255,255,255)
-                                        pos_hint:{'center_x':.7 ,'center_y':.90 }
-
-
+                                    MDFloatLayout:
+                                        MDLabel:
+                                            text: "Sound in environment :"
+                                            font_name: 'MPoppins'
+                                            font_size: "15sp"
+                                            pos_hint:{'center_x':.52 ,'center_y':.96 }
+                                            color: rgba(255,255,255,255)
+                                        MDLabel:
+                                            text: "High :"
+                                            font_name: 'MPoppins'
+                                            font_size: "13sp"
+                                            pos_hint:{'center_x':.52 ,'center_y':.90 }
+                                            color: rgba(255,255,255,255)
+                                        MDCheckbox:
+                                            id:ch1
+                                            selected_color:rgba(255,255,255,255)
+                                            pos_hint:{'center_x':.2 ,'center_y':.90 }
+                                            size_hint: .1, .1
+                                        MDLabel:
+                                            text: "Low :"
+                                            font_name: 'MPoppins'
+                                            font_size: "13sp"
+                                            pos_hint:{'center_x':.85 ,'center_y':.90 }
+                                            color: rgba(255,255,255,255)
+                                        MDCheckbox:
+                                            id:ch1
+                                            selected_color:rgba(255,255,255,255)
+                                            pos_hint:{'center_x':.53 ,'center_y':.90 }
+                                            size_hint: .1, .1
+                                        MDLabel:
+                                            text: "Auto Check :"
+                                            font_name: 'MPoppins'
+                                            font_size: "13sp"
+                                            pos_hint:{'center_x':1.08 ,'center_y':.90 }
+                                            color: rgba(255,255,255,255)
+                                        MDCheckbox:
+                                            id:ch1
+                                            selected_color:rgba(255,255,255,255)
+                                            pos_hint:{'center_x':.88 ,'center_y':.90 }
+                                            size_hint: .1, .1
+                                            active: True
+                                        MDFloatLayout:
+                                            pos_hint:{'center_x':.5 ,'center_y':.85 }
+                                            size_hint:.92,.002
+                                            md_bg_color:rgba(255,255,255,255)
+                                    MDFloatLayout:
+                                        MDLabel:
+                                            text: "luminous environment :"
+                                            font_name: 'MPoppins'
+                                            font_size: "15sp"
+                                            pos_hint:{'center_x':.52 ,'center_y':.80 }
+                                            color: rgba(255,255,255,255)
+                                        MDLabel:
+                                            text: "High :"
+                                            font_name: 'MPoppins'
+                                            font_size: "13sp"
+                                            pos_hint:{'center_x':.52 ,'center_y':.74 }
+                                            color: rgba(255,255,255,255)
+                                        MDCheckbox:
+                                            id:ch1
+                                            selected_color:rgba(255,255,255,255)
+                                            pos_hint:{'center_x':.25 ,'center_y':.74 }
+                                            size_hint: .1, .1
+                                        MDLabel:
+                                            text: "Low :"
+                                            font_name: 'MPoppins'
+                                            font_size: "13sp"
+                                            pos_hint:{'center_x':.85 ,'center_y':.74 }
+                                            color: rgba(255,255,255,255)
+                                        MDCheckbox:
+                                            id:ch1
+                                            selected_color:rgba(255,255,255,255)
+                                            pos_hint:{'center_x':.53 ,'center_y':.74 }
+                                            size_hint: .1, .1
+                                        MDLabel:
+                                            text: "Auto Check :"
+                                            font_name: 'MPoppins'
+                                            font_size: "13sp"
+                                            pos_hint:{'center_x':1.08 ,'center_y':.74 }
+                                            color: rgba(255,255,255,255)
+                                        MDCheckbox:
+                                            id:ch1
+                                            selected_color:rgba(255,255,255,255)
+                                            pos_hint:{'center_x':.88 ,'center_y':.74 }
+                                            size_hint: .1, .1
+                                            active: True
+                                        MDFloatLayout:
+                                            pos_hint:{'center_x':.5 ,'center_y':.69 }
+                                            size_hint:.92,.002
+                                            md_bg_color:rgba(255,255,255,255)
+                                    MDFloatLayout:
+                                        MDLabel:
+                                            text: "Battery conservation :"
+                                            font_name: 'MPoppins'
+                                            font_size: "15sp"
+                                            pos_hint:{'center_x':.52 ,'center_y':.64 }
+                                            color: rgba(255,255,255,255)
+                                        MDLabel:
+                                            text: "َ Always :"
+                                            font_name: 'MPoppins'
+                                            font_size: "13sp"
+                                            pos_hint:{'center_x':.52 ,'center_y':.59 }
+                                            color: rgba(255,255,255,255)
+                                        MDCheckbox:
+                                            id:ch1
+                                            selected_color:rgba(255,255,255,255)
+                                            pos_hint:{'center_x':.4 ,'center_y':.59 }
+                                            size_hint: .1, .1
+                                        MDLabel:
+                                            text: "Auto :"
+                                            font_name: 'MPoppins'
+                                            font_size: "13sp"
+                                            pos_hint:{'center_x':1.18 ,'center_y':.59 }
+                                            color: rgba(255,255,255,255)
+                                        MDCheckbox:
+                                            id:ch1
+                                            selected_color:rgba(255,255,255,255)
+                                            pos_hint:{'center_x':.88 ,'center_y':.59 }
+                                            size_hint: .1, .1
+                                            active: True
+                                        MDFloatLayout:
+                                            pos_hint:{'center_x':.5 ,'center_y':.54 }
+                                            size_hint:.92,.002
+                                            md_bg_color:rgba(255,255,255,255)
+                                    MDFloatLayout:
+                                        MDLabel:
+                                            text: "CPU conservation :"
+                                            font_name: 'MPoppins'
+                                            font_size: "15sp"
+                                            pos_hint:{'center_x':.52 ,'center_y':.49 }
+                                            color: rgba(255,255,255,255)
+                                        MDLabel:
+                                            text: "Always :"
+                                            font_name: 'MPoppins'
+                                            font_size: "13sp"
+                                            pos_hint:{'center_x':.52 ,'center_y':.44 }
+                                            color: rgba(255,255,255,255)
+                                        MDCheckbox:
+                                            id:ch1
+                                            selected_color:rgba(255,255,255,255)
+                                            pos_hint:{'center_x':.4 ,'center_y':.44 }
+                                            size_hint: .1, .1
+                                        MDLabel:
+                                            text: "Auto :"
+                                            font_name: 'MPoppins'
+                                            font_size: "13sp"
+                                            pos_hint:{'center_x':1.18 ,'center_y':.44 }
+                                            color: rgba(255,255,255,255)
+                                        MDCheckbox:
+                                            id:ch1
+                                            selected_color:rgba(255,255,255,255)
+                                            pos_hint:{'center_x':.88 ,'center_y':.44 }
+                                            size_hint: .1, .1
+                                            active: True
+                                        MDFloatLayout:
+                                            pos_hint:{'center_x':.5 ,'center_y':.39 }
+                                            size_hint:.92,.002
+                                            md_bg_color:rgba(255,255,255,255)
+                                    MDFloatLayout:
+                                        MDLabel:
+                                            text: "Screen Available :"
+                                            font_name: 'MPoppins'
+                                            font_size: "15sp"
+                                            pos_hint:{'center_x':.52 ,'center_y':.34 }
+                                            color: rgba(255,255,255,255)
+                                        MDLabel:
+                                            text: "Small Screen :"
+                                            font_name: 'MPoppins'
+                                            font_size: "13sp"
+                                            pos_hint:{'center_x':.52 ,'center_y':.29 }
+                                            color: rgba(255,255,255,255)
+                                            
+                                        MDCheckbox:
+                                            id:ch1
+                                            selected_color:rgba(255,255,255,255)
+                                            pos_hint:{'center_x':.4 ,'center_y':.29 }
+                                            size_hint: .1, .1
+                                            active: True
+                                        MDLabel:
+                                            text: "Smart TV :"
+                                            font_name: 'MPoppins'
+                                            font_size: "13sp"
+                                            pos_hint:{'center_x':1.12 ,'center_y':.29 }
+                                            color: rgba(255,255,255,255)
+                                        MDCheckbox:
+                                            id:ch1
+                                            selected_color:rgba(255,255,255,255)
+                                            pos_hint:{'center_x':.88 ,'center_y':.29 }
+                                            size_hint: .1, .1
+                                        MDFloatLayout:
+                                            pos_hint:{'center_x':.5 ,'center_y':.24 }
+                                            size_hint:.92,.002
+                                            md_bg_color:rgba(255,255,255,255)
+                                    MDFloatLayout:
+                                        MDLabel:
+                                            text: " Weather  :"
+                                            font_name: 'MPoppins'
+                                            font_size: "15sp"
+                                            pos_hint:{'center_x':.52 ,'center_y':.19 }
+                                            color: rgba(255,255,255,255)
+                                        MDLabel:
+                                            text: "Rain or Not Good :"
+                                            font_name: 'MPoppins'
+                                            font_size: "13sp"
+                                            pos_hint:{'center_x':.535 ,'center_y':.14 }
+                                            color: rgba(255,255,255,255)
+                                            
+                                        MDCheckbox:
+                                            id:ch1
+                                            selected_color:rgba(255,255,255,255)
+                                            pos_hint:{'center_x':.4 ,'center_y':.14 }
+                                            size_hint: .1, .1
+                                            active: True
+                                        MDLabel:
+                                            text: "Good  :"
+                                            font_name: 'MPoppins'
+                                            font_size: "13sp"
+                                            pos_hint:{'center_x':1.18 ,'center_y':.14 }
+                                            color: rgba(255,255,255,255)
+                                        MDCheckbox:
+                                            id:ch1
+                                            selected_color:rgba(255,255,255,255)
+                                            pos_hint:{'center_x':.88 ,'center_y':.14 }
+                                            size_hint: .1, .1
+                                        MDFloatLayout:
+                                            pos_hint:{'center_x':.5 ,'center_y':.09 }
+                                            size_hint:.92,.002
+                                            md_bg_color:rgba(255,255,255,255)            
+                                                    
                                         
 
                                     
@@ -947,6 +1371,7 @@
 
 
 #/PycharmProjects\pythonProject\P1_APP_ADaptation\video-adv.mp4
+
 
 <ElementCard@MDCard>:
     md_bg_color:69/255,55/255,86/255,1

@@ -67,7 +67,6 @@ class DrawerList(ThemableBehavior, MDList):
 
 
 
-
 class testAPP(MDApp):
     mail = None
     passw =None
@@ -76,11 +75,6 @@ class testAPP(MDApp):
     date=None
     adresse=None
     phone=None
-
-
-
-
-
 
     dialog = None
     i = 0
