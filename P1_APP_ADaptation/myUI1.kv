@@ -88,7 +88,7 @@
                                             font_name:"BPoppins"
                                             pos_hint:{'center_x':.5 ,'center_y':.3 }
                                             color: rgba(255,255,255,255)
-                                            on_release:app.snackbar_show()
+                                            on_release:app.sc01()
                                             canvas.before:
                                                 Color:
                                                     rgb :rgba(255,255,255,255)
@@ -145,10 +145,11 @@
                                             pos_hint:{'center_x':.52 ,'center_y':.90 }
                                             color: rgba(255,255,255,255)
                                         MDCheckbox:
-                                            id:ch1
+                                            id:c1
                                             selected_color:rgba(255,255,255,255)
                                             pos_hint:{'center_x':.2 ,'center_y':.90 }
                                             size_hint: .1, .1
+                                            on_press:app.che1()
                                         MDLabel:
                                             text: "Low :"
                                             font_name: 'MPoppins'
@@ -1343,6 +1344,32 @@
                 ScrollView:
                     MDList:
                         id:listdatauser
+    Screen:
+        name:"screenSC01"              
+        MDBoxLayout:
+            orientation:'vertical'
+            md_bg_color:56/255,40/255,81/255,1
+            MDToolbar:
+                title:"SC01"
+                left_action_items:[["arrow-left",lambda *args : setattr(mn_screen, "current", "screen1")]]
+                right_action_items: [["dots-vertical", lambda x: app.callback()]]           
+            MDScreen:
+                md_bg_color:56/255,40/255,81/255,1
+                MDLabel:
+                    id: record_your_conversations_label6a
+                    size_hint_y: None
+                    height: self.texture_size[1] + 2*self.padding[1]
+                    padding: dp(15), dp(10)
+                    markup: True
+                    text:
+                        """
+                        For many, this is the first introduction to master audio files making for a steep learning curve.\n
+                        I've searched for the tips [ref=Alitu][b][u]google[/u][/b][/ref], you are welcome!
+                        """
+                    on_ref_press:
+                        import webbrowser
+                        webbrowser.open('https://google.com')
+                    
 
 
 

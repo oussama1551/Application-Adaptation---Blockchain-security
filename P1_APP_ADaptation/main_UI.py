@@ -37,7 +37,6 @@ from kivymd.uix.list import IRightBodyTouch
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.selectioncontrol import MDCheckbox
 
-
 class YourContainer(IRightBodyTouch, MDBoxLayout):
     adaptive_width = True
 
@@ -420,7 +419,11 @@ class testAPP(MDApp):
     def loginactionspinner(self):
         self.root.ids.splogin.active = True
         Clock.schedule_once(self.launchcheck,3)
-
+    def che1(self):
+        if self.root.ids.c1.active:
+            print("active")
+    def sc01(self):
+        self.root.current = "screenSC01"
 
     
 
