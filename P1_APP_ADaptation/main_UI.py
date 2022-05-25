@@ -37,6 +37,9 @@ from kivymd.uix.list import IRightBodyTouch
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.selectioncontrol import MDCheckbox
 
+
+
+
 class YourContainer(IRightBodyTouch, MDBoxLayout):
     adaptive_width = True
 
