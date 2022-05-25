@@ -36,7 +36,6 @@ from kivymd.uix.list import TwoLineAvatarIconListItem
 from kivymd.uix.list import IRightBodyTouch
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.selectioncontrol import MDCheckbox
-from cefpython3 import cefpython
 
 
 
@@ -155,7 +154,7 @@ class testAPP(MDApp):
        
     def build(self):
         self.title='Adaptation Application'
-        Window.size = (360, 600)
+        Window.size = (340, 600)
         self.theme_cls.theme_style = "Dark"
         self.theme_cls.primary_palette = "DeepPurple"
         self.data = []
@@ -352,7 +351,7 @@ class testAPP(MDApp):
 
     def snackbar_show(self):
         self.snackbar = Snackbar(
-            text="This is a snackbar!",
+            text="",
             snackbar_x="10dp",
             snackbar_y="60dp",
         )
