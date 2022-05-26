@@ -102,6 +102,9 @@ class testAPP(MDApp):
             Service_VideoToImages.filep = path
             self.loadvideo(path)
             self.exit_manager()
+        elif self.root.current == "screen2":
+            self.textfile_path = path
+            self.exit_manager()
         elif self.root.current == "screen1":
             print(path)
             
@@ -224,6 +227,7 @@ class testAPP(MDApp):
                         self.show_alert_dialog()
                 else: print("no data received")
             self.ser.close()
+
     def show_alert_dialog(self):
         if not self.dialog:
             self.dialog = MDDialog(
@@ -236,6 +240,23 @@ class testAPP(MDApp):
                     MDRectangleFlatButton(
                         text = "َ Approval",
                         on_release = self.checkspinner 
+                    )
+                ]             
+            )
+        self.dialog.open()
+
+    def show_alert_dialog_SC(self,textdialog):
+        if not self.dialog:
+            self.dialog = MDDialog(
+                title = "Notice",
+                text = textdialog ,
+                buttons = [
+                    MDFlatButton(
+                        text = "CANCEL",on_release = self.close_dialog 
+                    ),
+                    MDRectangleFlatButton(
+                        text = "َ Approval",
+                        on_release = self.opensounddialog
                     )
                 ]             
             )
@@ -277,7 +298,7 @@ class testAPP(MDApp):
         self.textfieldtext = self.root.ids.textfieldspeech.text
         print(self.textfieldtext)
         self.texttospeech()
-    def adaptTextfile(self):
+    def adaptTextfile(self,obj):
         self.texttospeech_FileText()
 
     def recordsound(self):
@@ -349,9 +370,9 @@ class testAPP(MDApp):
         self.open_file_manager()
         
 
-    def snackbar_show(self):
+    def snackbar_show(self,textsnack,b1,b2):
         self.snackbar = Snackbar(
-            text="",
+            text=textsnack,
             snackbar_x="10dp",
             snackbar_y="60dp",
         )
@@ -360,12 +381,12 @@ class testAPP(MDApp):
         ) / Window.width
         self.snackbar.buttons = [
             MDFlatButton(
-                text="UPDATE",
+                text=b1,
                 text_color=(1, 1, 1, 1),
-                on_release= self.snackbar.dismiss,
+                on_release= self.showdialogaftersnack,
             ),
             MDFlatButton(
-                text="CANCEL",
+                text=b2,
                 text_color=(1, 1, 1, 1),
                 on_release=self.snackbar.dismiss,
             ),
@@ -426,9 +447,21 @@ class testAPP(MDApp):
     def che1(self):
         if self.root.ids.c1.active:
             print("active")
+
+
     def sc01(self):
         self.root.current = "screenSC01"
-
+        Clock.schedule_once(self.sc01_snackbar,3)
+    def sc01_snackbar(self,obj):
+        self.snackbar_show("Notice Adapt","Show","Cancel")
+    def showdialogaftersnack(self,obj):
+        self.snackbar.dismiss
+        self.show_alert_dialog_SC("The system will sense the presence of rain, in addition to some other factors, the text of these web pages will be adapted to sound")
+        
+    def opensounddialog(self,obj):
+        
+        self.dialog.dismiss()
+        os.system("start output1.mp3")
     
 
 

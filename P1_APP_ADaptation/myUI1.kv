@@ -102,7 +102,7 @@
                                             font_name:"BPoppins"
                                             pos_hint:{'center_x':.5 ,'center_y':.5 }
                                             color: rgba(255,255,255,255)
-                                            on_release:app.snackbar_show()
+                                            #on_release:app.snackbar_show()
                                             canvas.before:
                                                 Color:
                                                     rgb :rgba(255,255,255,255)
@@ -116,7 +116,7 @@
                                             font_name:"BPoppins"
                                             pos_hint:{'center_x':.5 ,'center_y':.7 }
                                             color: rgba(255,255,255,255)
-                                            on_release:app.snackbar_show()
+                                            #on_release:app.snackbar_show()
                                             canvas.before:
                                                 Color:
                                                     rgb :rgba(255,255,255,255)
@@ -1354,35 +1354,30 @@
                 md_bg_color:56/255,40/255,81/255,1
                 Image:
                     source:"Images/scsc.png"
+                MDIconButton:
+                    icon:"arrow-left"
+                    pos_hint:{'center_y':.98 }
+                    theme_text_color:"Custom"
+                    text_color:rgba(56,40,81,255)
+                    on_release: root.current = "screenlogin"
                     
-
-
-
-                    
-
+    Screen:
+        name:"screenSC02"              
+        MDBoxLayout:
+            orientation:'vertical'
+            md_bg_color:56/255,40/255,81/255,1
                 
-
-                        
-
-
-        
-            
-
-
-                     
-                            
-
+            MDScreen:
+                md_bg_color:56/255,40/255,81/255,1           
                 
+    Screen:
+        name:"screenSC03"              
+        MDBoxLayout:
+            orientation:'vertical'
+            md_bg_color:56/255,40/255,81/255,1
                 
-
-                               
-
-                
-                    
-
-
-
-#/PycharmProjects\pythonProject\P1_APP_ADaptation\video-adv.mp4
+            MDScreen:
+                md_bg_color:56/255,40/255,81/255,1
 
 
 <ElementCard@MDCard>:
