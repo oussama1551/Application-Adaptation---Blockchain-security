@@ -170,8 +170,8 @@ class testAPP(MDApp):
         
         
     def login(self,*args):
-        #self.root.current = "screenlogin"
-        self.root.current = "screen1"
+        self.root.current = "screenlogin"
+        #self.root.current = "screen1"
     
     def datausershow(self):
         self.root.ids.listdatauser.add_widget(

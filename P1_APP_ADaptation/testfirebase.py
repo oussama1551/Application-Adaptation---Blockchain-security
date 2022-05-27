@@ -1,27 +1,10 @@
-from kivy.uix.widget import Widget
-from kivymd.app import MDApp
-from webview import WebView
-from kivy.lang.builder import Builder
-from kivymd.uix.button import MDFlatButton
-from kivymd.uix.screen import MDScreen
+def verify_data_login():
+        from firebase import firebase
 
-Builder.load_string("""
-<MyWebView>
-    MDFlatButton:
-        text: "Push"
-        pos_hint: {"center_x": .5, "center_y": .4}
-        on_press: root.Push()
-""")
-
-class MyWebView(MDScreen):
-    def Push(self):
-        WebView("https://www.google.com")
+        firebase = firebase.FirebaseApplication('https://masterapptestadaptation-default-rtdb.firebaseio.com/',None)
+        result = firebase.get('https://masterapptestadaptation-default-rtdb.firebaseio.com/Users','')
 
 
-class MyWebApp(MDApp):
-    def build(self):
-        return MyWebView()
 
 
-if __name__ == '__main__':
-    MyWebApp().run()
+verify_data_login()
