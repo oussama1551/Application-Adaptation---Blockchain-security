@@ -36,8 +36,7 @@ from kivymd.uix.list import TwoLineAvatarIconListItem
 from kivymd.uix.list import IRightBodyTouch
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.selectioncontrol import MDCheckbox
-
-
+from firebase import firebase
 
 
 
@@ -415,7 +414,6 @@ class testAPP(MDApp):
     def verify_data_login(self,email,password):
         print("check login")
         from firebase import firebase
-
         firebase = firebase.FirebaseApplication('https://masterapptestadaptation-default-rtdb.firebaseio.com/',None)
         result = firebase.get('https://masterapptestadaptation-default-rtdb.firebaseio.com/Users','')
 
