@@ -36,6 +36,8 @@ from kivymd.uix.list import TwoLineAvatarIconListItem
 from kivymd.uix.list import IRightBodyTouch
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.selectioncontrol import MDCheckbox
+from kivymd.icon_definitions import md_icons
+
 
 
 
@@ -168,8 +170,8 @@ class testAPP(MDApp):
         
         
     def login(self,*args):
-        self.root.current = "screenlogin"
-        #self.root.current = "screen1"
+        #self.root.current = "screenlogin"
+        self.root.current = "screen1"
     
     def datausershow(self):
         self.root.ids.listdatauser.add_widget(
@@ -296,7 +298,7 @@ class testAPP(MDApp):
         self.textfieldtext = self.root.ids.textfieldspeech.text
         print(self.textfieldtext)
         self.texttospeech()
-    def adaptTextfile(self,obj):
+    def adaptTextfile(self):
         self.texttospeech_FileText()
 
     def recordsound(self):
@@ -348,6 +350,7 @@ class testAPP(MDApp):
     def loadvideo(self,pathVID):
         self.root.ids.screenviedo.add_widget(VideoPlayer(source = pathVID,state='play')
                 )
+    
     def lancdeconvert(self):
         Service_VideoToImages.ddeconvert()
 
@@ -381,7 +384,8 @@ class testAPP(MDApp):
             MDFlatButton(
                 text=b1,
                 text_color=(1, 1, 1, 1),
-                on_release= self.showdialogaftersnack,
+                on_release= self.ifsnackbar,
+                
             ),
             MDFlatButton(
                 text=b2,
@@ -449,25 +453,46 @@ class testAPP(MDApp):
     def sc01(self):
         self.root.current = "screenSC01"
         Clock.schedule_once(self.sc01_snackbar,3)
+
     def sc01_snackbar(self,obj):
         self.snackbar_show("Notice Adapt","Show","Cancel")
-    def showdialogaftersnack(self,obj):
+
+    def showdialogaftersnack(self):
         self.snackbar.dismiss
         self.show_alert_dialog_SC("The system will sense the presence of rain, in addition to some other factors, the text of these web pages will be adapted to sound")
-        
+    
+    def showdialogaftersnack2(self):
+        self.snackbar.dismiss
+        self.show_alert_dialog_SC("The system will sense noisy environment, in addition to some other factors, the sound selection will be adapted to text")
+
+    def showdialogaftersnack3(self):
+        self.snackbar.dismiss
+        self.show_alert_dialog_SC("The system detect Overlod Cpu, in addition to some other factors, the video selection will be adapted to Images")
+  
     def opensounddialog(self,obj):
-        
         self.dialog.dismiss()
         os.system("start output1.mp3")
     
+    def sc02(self):
+        self.root.current = "screenSC02"
+        Clock.schedule_once(self.sc01_snackbar,3)
 
+    def sc03(self):
+        self.root.current = "screenSC03"
+        self.loadvideoSC03()
+        Clock.schedule_once(self.sc01_snackbar,4)
 
+    def ifsnackbar(self,obj):
+        if self.root.current == "screenSC01" :
+            self.showdialogaftersnack()
+        elif self.root.current == "screenSC02" :
+            self.showdialogaftersnack2()
+        elif self.root.current == "screenSC03" :
+            self.showdialogaftersnack3()
 
-
-
-
-
-
+    def loadvideoSC03(self):
+        self.root.ids.screenSC3.add_widget(VideoPlayer(source = "C:\PycharmProjects\pythonProject\P1_APP_ADaptation\VidSC03.mp4",state='play'))
+            
 
 
 LabelBase.register(name="MPoppins",fn_regular="C:\\PycharmProjects\\pythonProject\\P1_APP_ADaptation\\font\\Poppins"
