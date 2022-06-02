@@ -37,8 +37,8 @@ from kivymd.uix.list import IRightBodyTouch
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.selectioncontrol import MDCheckbox
 from kivymd.icon_definitions import md_icons
+import hadcoin_node_5002
 import threading
-import hadcoin_node_5001
 
 
 
@@ -290,7 +290,6 @@ class testAPP(MDApp):
         output = gTTS(text=myText,lang=language,slow=False)
         output.save("output1.mp3")
         os.system("start output1.mp3")
-        myData.append(fh)
     def texttospeech(self):
         #myText1 = "Real Madrid"
         #fh = open(self.textfile_path,"r")
@@ -304,8 +303,7 @@ class testAPP(MDApp):
         print(self.textfieldtext)
         self.texttospeech()
     def adaptTextfile(self):
-        threading.Thread(target=self.texttospeech_FileText).start()
-        
+        self.texttospeech_FileText()
 
     def recordsound(self):
         self.recordaction()
