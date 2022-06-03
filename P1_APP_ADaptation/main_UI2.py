@@ -37,8 +37,10 @@ from kivymd.uix.list import IRightBodyTouch
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.selectioncontrol import MDCheckbox
 from kivymd.icon_definitions import md_icons
-import hadcoin_node_5002
 import threading
+import hadcoin_node_5001
+import datetime
+
 
 
 
@@ -260,7 +262,7 @@ class testAPP(MDApp):
                     ),
                     MDRectangleFlatButton(
                         text = "َ Approval",
-                        on_release = self.opensounddialog
+                        on_release = self.adaptForSC01
                     )
                 ]             
             )
@@ -290,6 +292,7 @@ class testAPP(MDApp):
         output = gTTS(text=myText,lang=language,slow=False)
         output.save("output1.mp3")
         os.system("start output1.mp3")
+        myData.append(fh)
     def texttospeech(self):
         #myText1 = "Real Madrid"
         #fh = open(self.textfile_path,"r")
@@ -303,7 +306,27 @@ class testAPP(MDApp):
         print(self.textfieldtext)
         self.texttospeech()
     def adaptTextfile(self):
-        self.texttospeech_FileText()
+        threading.Thread(target=self.texttospeech_FileText).start()
+
+    def adaptForSC011(self):
+        print("waiting Adapt .. ")
+        fh = open("/PycharmProjects\pythonProject\data_audio.txt","r")
+        myText = fh.read().replace("\n", " ")
+        language = 'en'
+        output = gTTS(text=myText,lang=language,slow=False)
+        output.save("output2.mp3")
+        os.system("start output2.mp3")
+        myData.append("Text File before adapt "+fh)
+        self.dialog.dismiss()
+        filesound = open("/PycharmProjects\pythonProject\output2.mp3","rb")
+        myData.append("File After adapt"+filesound)
+        print(myData)
+
+    def adaptForSC01(self,obj):
+        threading.Thread(target=self.adaptForSC011).start()
+
+
+
 
     def recordsound(self):
         self.recordaction()
@@ -438,8 +461,8 @@ class testAPP(MDApp):
                     self.date=result[i]['Birthday Date']
                     self.phone=result[i]['Phone Number']
                     self.root.ids.labelnameprofile.text = result[i]['Name'] + "  "+result[i]['Second_name']
-                    myData.append(self.mail)
-                    print(myData)
+                    myData.append("From User : " + self.mail)
+                    # print(myData)
                     #hadcoin_node_5001.launchapp
                     #threading.Thread(target=hadcoin_node_5001.launchapp).start()
                     #self.datausershow()
@@ -467,7 +490,9 @@ class testAPP(MDApp):
 
     def showdialogaftersnack(self):
         self.snackbar.dismiss
-        self.show_alert_dialog_SC("The system will sense the presence of rain, in addition to some other factors, the text of these web pages will be adapted to sound")
+        N01 = "The system will sense the presence of rain, in addition to some other factors, the text of these web pages will be adapted to sound"
+        self.show_alert_dialog_SC(N01)
+        myData.append("System suggests an adaptation process : " + N01 + ", Time : " + str(datetime.datetime.now()) )
     
     def showdialogaftersnack2(self):
         self.snackbar.dismiss
@@ -501,7 +526,7 @@ class testAPP(MDApp):
     def loadvideoSC03(self):
         self.root.ids.screenSC3.add_widget(VideoPlayer(source = "C:\PycharmProjects\pythonProject\P1_APP_ADaptation\VidSC03.mp4",state='play'))
             
-
+    
 
 LabelBase.register(name="MPoppins",fn_regular="C:\\PycharmProjects\\pythonProject\\P1_APP_ADaptation\\font\\Poppins"
                                               "-Medium.ttf")
