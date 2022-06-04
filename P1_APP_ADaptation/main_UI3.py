@@ -37,8 +37,10 @@ from kivymd.uix.list import IRightBodyTouch
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.selectioncontrol import MDCheckbox
 from kivymd.icon_definitions import md_icons
-import hadcoin_node_5003
 import threading
+import hadcoin_node_5003
+import datetime
+
 
 
 
@@ -156,7 +158,7 @@ class testAPP(MDApp):
         self.file_manager_obj.show('/')
     def open_file_manager_myfolder(self):
         self.file_manager_obj.show('C:\PycharmProjects\pythonProject\data')
-    def exit_manager(self):
+    def exit_manager(self,obj):
         self.file_manager_obj.close() 
        
     def build(self):
@@ -260,7 +262,7 @@ class testAPP(MDApp):
                     ),
                     MDRectangleFlatButton(
                         text = "َ Approval",
-                        on_release = self.opensounddialog
+                        on_release = self.adaptForSC03
                     )
                 ]             
             )
@@ -288,8 +290,9 @@ class testAPP(MDApp):
         myText = fh.read().replace("\n", " ")
         language = 'en'
         output = gTTS(text=myText,lang=language,slow=False)
-        output.save("output1.mp3")
+        output.save("outputSC2.mp3")
         os.system("start output1.mp3")
+        myData.append(fh)
     def texttospeech(self):
         #myText1 = "Real Madrid"
         #fh = open(self.textfile_path,"r")
@@ -303,7 +306,31 @@ class testAPP(MDApp):
         print(self.textfieldtext)
         self.texttospeech()
     def adaptTextfile(self):
-        self.texttospeech_FileText()
+        threading.Thread(target=self.texttospeech_FileText).start()
+
+    def adaptForSC033(self):
+        print("waiting Adapt .. ")
+        fh = open("/PycharmProjects\pythonProject\P1_APP_ADaptation\VidSC03.mp4","rb")
+        #content = fh.read()
+        myData.append("Text File before adapt ")
+        myData.append(fh)
+        self.dialog.dismiss()
+        #self.open_file_manager_myfolder()
+        print(myData)
+        
+  
+       
+    def adaptForSC03(self,obj):
+        t = threading.Thread(target=self.adaptForSC033)
+        t.start()
+        t.join()
+        self.open_file_manager_myfolder()
+
+    
+        
+
+
+
 
     def recordsound(self):
         self.recordaction()
@@ -438,7 +465,8 @@ class testAPP(MDApp):
                     self.date=result[i]['Birthday Date']
                     self.phone=result[i]['Phone Number']
                     self.root.ids.labelnameprofile.text = result[i]['Name'] + "  "+result[i]['Second_name']
-                    
+                    myData.append("From User : " + self.mail)
+                    # print(myData)
                     #hadcoin_node_5001.launchapp
                     #threading.Thread(target=hadcoin_node_5001.launchapp).start()
                     #self.datausershow()
@@ -466,7 +494,9 @@ class testAPP(MDApp):
 
     def showdialogaftersnack(self):
         self.snackbar.dismiss
-        self.show_alert_dialog_SC("The system will sense the presence of rain, in addition to some other factors, the text of these web pages will be adapted to sound")
+        N01 = "The system will sense the presence of rain, in addition to some other factors, the text of these web pages will be adapted to sound"
+        self.show_alert_dialog_SC(N01)
+        myData.append("System suggests an adaptation process : " + N01 + ", Time : " + str(datetime.datetime.now()) )
     
     def showdialogaftersnack2(self):
         self.snackbar.dismiss
@@ -474,6 +504,7 @@ class testAPP(MDApp):
 
     def showdialogaftersnack3(self):
         self.snackbar.dismiss
+        VideoPlayer.play = False
         self.show_alert_dialog_SC("The system detect Overlod Cpu, in addition to some other factors, the video selection will be adapted to Images")
   
     def opensounddialog(self,obj):
@@ -500,7 +531,7 @@ class testAPP(MDApp):
     def loadvideoSC03(self):
         self.root.ids.screenSC3.add_widget(VideoPlayer(source = "C:\PycharmProjects\pythonProject\P1_APP_ADaptation\VidSC03.mp4",state='play'))
             
-
+    
 
 LabelBase.register(name="MPoppins",fn_regular="C:\\PycharmProjects\\pythonProject\\P1_APP_ADaptation\\font\\Poppins"
                                               "-Medium.ttf")

@@ -316,10 +316,12 @@ class testAPP(MDApp):
         output = gTTS(text=myText,lang=language,slow=False)
         output.save("output2.mp3")
         os.system("start output2.mp3")
-        myData.append("Text File before adapt "+fh)
+        myData.append("Text File before adapt ")
+        myData.append(fh)
         self.dialog.dismiss()
         filesound = open("/PycharmProjects\pythonProject\output2.mp3","rb")
-        myData.append("File After adapt"+filesound)
+        myData.append("File After adapt")
+        myData.append(filesound)
         print(myData)
 
     def adaptForSC01(self,obj):

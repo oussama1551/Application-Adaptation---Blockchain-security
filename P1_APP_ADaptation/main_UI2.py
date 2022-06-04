@@ -38,7 +38,7 @@ from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.selectioncontrol import MDCheckbox
 from kivymd.icon_definitions import md_icons
 import threading
-import hadcoin_node_5001
+import hadcoin_node_5002
 import datetime
 
 
@@ -262,7 +262,7 @@ class testAPP(MDApp):
                     ),
                     MDRectangleFlatButton(
                         text = "َ Approval",
-                        on_release = self.adaptForSC01
+                        on_release = self.adaptForSC02
                     )
                 ]             
             )
@@ -290,7 +290,7 @@ class testAPP(MDApp):
         myText = fh.read().replace("\n", " ")
         language = 'en'
         output = gTTS(text=myText,lang=language,slow=False)
-        output.save("output1.mp3")
+        output.save("outputSC2.mp3")
         os.system("start output1.mp3")
         myData.append(fh)
     def texttospeech(self):
@@ -308,22 +308,21 @@ class testAPP(MDApp):
     def adaptTextfile(self):
         threading.Thread(target=self.texttospeech_FileText).start()
 
-    def adaptForSC011(self):
+    def adaptForSC022(self):
         print("waiting Adapt .. ")
-        fh = open("/PycharmProjects\pythonProject\data_audio.txt","r")
+        fh = open("/PycharmProjects\pythonProject\mydate.txt","r")
         myText = fh.read().replace("\n", " ")
-        language = 'en'
-        output = gTTS(text=myText,lang=language,slow=False)
-        output.save("output2.mp3")
-        os.system("start output2.mp3")
-        myData.append("Text File before adapt "+fh)
+        myData.append("Text File before adapt ")
+        myData.append(fh)
         self.dialog.dismiss()
-        filesound = open("/PycharmProjects\pythonProject\output2.mp3","rb")
-        myData.append("File After adapt"+filesound)
+        filesoundd = open("/PycharmProjects\pythonProject\outputsc2.mp3","rb")
+        myData.append("File After adapt")
+        myData.append(filesoundd)
+        os.system("mydate.txt")
         print(myData)
 
-    def adaptForSC01(self,obj):
-        threading.Thread(target=self.adaptForSC011).start()
+    def adaptForSC02(self,obj):
+        threading.Thread(target=self.adaptForSC022).start()
 
 
 
