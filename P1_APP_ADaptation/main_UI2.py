@@ -38,7 +38,7 @@ from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.selectioncontrol import MDCheckbox
 from kivymd.icon_definitions import md_icons
 import threading
-import hadcoin_node_5002
+import User_02_5002
 import datetime
 
 

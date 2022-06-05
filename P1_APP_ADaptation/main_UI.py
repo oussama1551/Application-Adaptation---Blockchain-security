@@ -38,31 +38,23 @@ from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.selectioncontrol import MDCheckbox
 from kivymd.icon_definitions import md_icons
 import threading
-import hadcoin_node_5001
+import User_01_5001
 import datetime
-
-
+import json
+from json.encoder import JSONEncoder
 
 
 class YourContainer(IRightBodyTouch, MDBoxLayout):
     adaptive_width = True
-
-
 class Content(BoxLayout):
     pass
-
 class ContentNavigationDrawer(BoxLayout):
     pass
-
 class MenuScreen(ScreenManager):   
     pass
-
-
-
 class DrawerList(ThemableBehavior, MDList):
     def set_color_item(self, instance_item):
         '''Called when tap on a menu item.'''
-
         # Set the color of the icon and text for the menu item.
         for item in self.children:
             if item.text_color == self.theme_cls.primary_color:
@@ -73,6 +65,7 @@ class DrawerList(ThemableBehavior, MDList):
 
 myData = []
 
+
 class testAPP(MDApp):
     mail = None
     passw =None
@@ -81,12 +74,8 @@ class testAPP(MDApp):
     date=None
     adresse=None
     phone=None
-
     dialog = None
     i = 0
-    
-    
-
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.file_manager_obj = MDFileManager(
@@ -96,8 +85,6 @@ class testAPP(MDApp):
             #show_hidden_files=True
         )
 
-
-    
     def selectFunction(self,path):
         if self.root.current == "screen3":
             print(path)
@@ -153,7 +140,6 @@ class testAPP(MDApp):
                     print(fp, "is an unknown file format.")
                     self.FileType=fp, "is an unknown file format."
 
-
     def open_file_manager(self):
         self.file_manager_obj.show('/')
     def open_file_manager_myfolder(self):
@@ -173,8 +159,6 @@ class testAPP(MDApp):
         Clock.schedule_once(self.login, 5)
         Clock.schedule_interval(self.startprogress_bar,0)
 
-        
-        
     def login(self,*args):
         self.root.current = "screenlogin"
         #self.root.current = "screen1"
@@ -201,10 +185,6 @@ class testAPP(MDApp):
         self.root.ids.listdatauser.add_widget(
             TwoLineAvatarIconListItem(text="Phone Number",secondary_text=self.phone),
         )
-       
-
-
-
     
     def receivefromarduino(self):
         print("test ")
@@ -279,11 +259,11 @@ class testAPP(MDApp):
         self.root.ids.sppp.active = True
         Clock.schedule_once(self.closespiiner,5)
     
-
     def change_screen(self,obj):
         self.root.current = "screen3"
         self.root.transition.direction = "left"
         self.dialog.dismiss()
+
     def texttospeech_FileText(self):
         #myText1 = "Real Madrid" hhhhhh
         fh = open(self.textfile_path,"r")
@@ -292,7 +272,8 @@ class testAPP(MDApp):
         output = gTTS(text=myText,lang=language,slow=False)
         output.save("output1.mp3")
         os.system("start output1.mp3")
-        myData.append(fh)
+        #myData.append(fh)
+
     def texttospeech(self):
         #myText1 = "Real Madrid"
         #fh = open(self.textfile_path,"r")
@@ -317,11 +298,24 @@ class testAPP(MDApp):
         output.save("output2.mp3")
         os.system("start output2.mp3")
         myData.append("Text File before adapt ")
-        myData.append(fh)
+        filename = "/PycharmProjects\pythonProject\data_audio.txt"
+        dict1 = {} 
+        # creating dictionary 
+        with open(filename) as fh: 
+            for line in fh: 
+                # reads each line and trims of extra the spaces 
+                # and gives only the valid words 
+                command, description = line.strip().split(None, 1) 
+                dict1[command] = description.strip() 
+        # creating json file 
+        # the JSON file is named as test1 
+        out_file = open("test1.json", "w") 
+        json.dump(dict1, out_file, indent = 4, sort_keys = False) 
+        out_file.close() 
+        myData.append(out_file)
         self.dialog.dismiss()
-        filesound = open("/PycharmProjects\pythonProject\output2.mp3","rb")
-        myData.append("File After adapt")
-        myData.append(filesound)
+        myData.append("Time action : " + str(datetime.datetime.now()))
+        myData.append("Adappt Done")
         print(myData)
 
     def adaptForSC01(self,obj):

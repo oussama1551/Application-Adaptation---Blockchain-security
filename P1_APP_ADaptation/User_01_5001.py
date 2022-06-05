@@ -113,7 +113,6 @@ node_address = str(uuid4()).replace('-', '')
 
 blockchain = Blockchain()
 
-
 #myD = testAPP()
 
 # Mining a new block
@@ -124,7 +123,7 @@ def mine_block():
     proof = blockchain.proof_of_work(previous_proof)
     previous_hash = blockchain.hash(previous_block)
     #print(', '.join(myD.myData))
-    blockchain.add_transaction(sender = node_address, receiver = 'Hadelin', amount = main_UI.myData )
+    blockchain.add_transaction(sender = node_address, receiver = 'Hadelin', amount = str(main_UI.myData) )
     block = blockchain.create_block(proof, previous_hash)
     response = {'message': 'Congratulations, you just mined a block!',
                 'index': block['index'],
